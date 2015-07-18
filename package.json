@@ -1,0 +1,24 @@
+{
+  "name": "musical_restaurant_finder",
+  "version": "1.0.0",
+  "description": "A musical taste-based app to help you find your next meal.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icivgin/musical_restaurant_finder.git"
+  },
+  "author": "Ian Civgin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icivgin/musical_restaurant_finder/issues"
+  },
+  "homepage": "https://github.com/icivgin/musical_restaurant_finder#readme",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1"
+  }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+	<!-- bootstrap css -->
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+
+	<!-- custom styles -->
+	<link rel='stylesheet' type='text/css' href='style.css'>
+
+	<title>Musical Taste</title>
+</head>
+<body>
+	<div class='jumbotron'>
+		<h1>Musical Taste</h1>
+	</div>
+
+	<!-- inputs -->
+	<div class='row center'>
+		<div class='col-md-6 col-md-offset-3'>
+			<form action="">
+				<input type='text' id='track-name' placeholder='Put text here dummy.' required autofocus></input><br>
+
+				<input type='text' id='artist-name' placeholder='Put text here dummy.' required></input><br>
+
+				<!-- //button -->
+				<button type='submit' class='btn btn-success' id='submit-track'>Submit</button><br>
+			</form>
+		</div>
+	</div>
+	
+	<!-- display div -->
+	<div class='row center'>
+		<div class='col-md-6 col-md-offset-3'>
+			<div id='result-display'></div>
+		</div>
+	</div>
+
+	<!-- result script -->
+	<script type='text/x-handlebars-template' id='test-template'>
+		<h1> {{ track }} - {{ artist }} </h1>
+	</script>
+
+
+	<!-- jquery -->
+	<script type='text/javascript' src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
+
+	<!-- bootstrap js -->
+	<script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+	<!-- underscore -->
+	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js'></script>
+	
+	<!-- handlebars -->
+	<script type='text/javascript' src='http://cdn.jsdelivr.net/handlebarsjs/3.0.3/handlebars.min.js'></script>
+
+	<!-- custom script -->
+	<script type='text/javascript' src='scripts.js'></script>
+</body>
+</html>
