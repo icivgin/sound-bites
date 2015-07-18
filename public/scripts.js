@@ -30,7 +30,7 @@ $('#submit-track').on('submit', function(event) {
 	// 	console.log(genre); 
 	// });
 
-	$.get('http://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + $('#artist-name').val() + '&format=json', function(data) {
+	$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + $('#artist-name').val() + '&format=json', function(data) {
 			genre = data.response.terms[0].name; 
 			genre2 = data.response.terms[1].name; 
 			genre3 = data.response.terms[2].name; 
