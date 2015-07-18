@@ -20,13 +20,13 @@
 	<!-- inputs -->
 	<div class='row center'>
 		<div class='col-md-6 col-md-offset-3'>
-			<form action="">
+			<form id='submit-track'>
 				<input type='text' id='track-name' placeholder='Put text here dummy.' required autofocus></input><br>
 
 				<input type='text' id='artist-name' placeholder='Put text here dummy.' required></input><br>
 
 				<!-- //button -->
-				<button type='submit' class='btn btn-success' id='submit-track'>Submit</button><br>
+				<button type='submit' class='btn btn-success'>Submit</button><br>
 			</form>
 		</div>
 	</div>
@@ -40,7 +40,7 @@
 
 	<!-- result script -->
 	<script type='text/x-handlebars-template' id='test-template'>
-		<h1> {{ track }} - {{ artist }} </h1>
+		<h1> {{ genreOne }}, {{ genreTwo }}, {{ genreThree }} </h1>
 	</script>
 
 
