@@ -444,7 +444,7 @@ $('#submit-track').on('submit', function(event) {
 	// var word = { track: $('#track-name').val(), artist: $('#artist-name').val()};
 
 	// check to see if song exists
-	$.get('http://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + $('#artist-name').val() + '&title=' + $('#track-name').val(), function (data) {
+	$.get('https://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + $('#artist-name').val() + '&title=' + $('#track-name').val(), function (data) {
 		if (data.response.songs.length !== 0) {
 
 			// query for primary and secondary genres
