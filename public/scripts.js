@@ -466,11 +466,11 @@ function getVenue () {
 	// $('#result-display-secondary').html(foodTemplate(food));
 
 	// make call to 4square api
-	$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&near=san+francisco&limit=5&query=' + mapResult, function (data) {
+	$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&near=san+francisco&limit=10&query=' + mapResult, function (data) {
 		console.log(data);
 		// checks that query returns 5 results
-		if(data.response.groups[0].items.length > 4) {
-			var ranVenue = Math.floor(Math.random() * 5);
+		if(data.response.groups[0].items.length > 9) {
+			var ranVenue = Math.floor(Math.random() * 10);
 			var venue = data.response.groups[0].items[ranVenue].venue;
 			var trackName = $('#track-name').val();
 			var artistName = $('#artist-name').val();
