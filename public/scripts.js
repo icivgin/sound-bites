@@ -8,7 +8,11 @@ var template = Handlebars.compile(source);
 var foodSource   = $("#food-template").html();
 var foodTemplate = Handlebars.compile(foodSource);
 
+var toggle = true;
+
 var apiKey = 'DGY3JGAZP1OFZR4RO';
+var clientID = 'J3QA1RADSXWM43QI0VTSC1EFFCFFZYKPZW2Z2PNVL5YEWU5T';
+var clientSecret = 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP';
 
 function map (placeholder1, placeholder2) {
 	var random = Math.floor(Math.random() * 10);
@@ -464,21 +468,9 @@ function map (placeholder1, placeholder2) {
 	}
 }
 
-var testtest = {food: map('native american', 'funk')};
-console.log(testtest);
-$('#result-display').html(foodTemplate(testtest));
-
 $('#submit-track').on('submit', function(event) {
 	event.preventDefault();
-	var word = { track: $('#track-name').val(), artist: $('#artist-name').val()};
-	var genre;
-
-	var genreArr = [];
-
-	for (i = 0; i < 1380; i++ ) {
-		genreArr.push(results.genres[i].name);
-	}
-	console.log(genreArr);
+	// var word = { track: $('#track-name').val(), artist: $('#artist-name').val()};
 
 	// check to see if song exists
 	$.get('http://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + $('#artist-name').val() + '&title=' + $('#track-name').val(), function (data) {
@@ -487,21 +479,56 @@ $('#submit-track').on('submit', function(event) {
 
 			// query for genres
 				$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + $('#artist-name').val() + '&format=json', function(data) {
-						
-					if (data.response.terms) {
-					genre = data.response.terms[0].name; 
-					genre2 = data.response.terms[1].name; 
-					genre3 = data.response.terms[2].name; 
+					if (toggle) {	
+						if (data.response.terms) {
+						genre1 = data.response.terms[0].name; 
+						genre2 = data.response.terms[1].name; 
 
-					// splitted = genre.split(' ');
-						console.log(genre);
+						// splitted = genre.split(' ');
 
-						var genres = {genreOne: genre, genreTwo: genre2, genreThree: genre3};
+							var genres = {genreOne: genre1, genreTwo: genre2};
 
-						$('#result-display').html(template(genres));
-						// reset fields
+							$('#result-display').html(template(genres));
+							// reset fields
 
-					} else { alert('Track not found, please try again.'); }
+						//map to food
+						var mapResult = map(genre2, genre1);
+						var food = { food: mapResult };
+						$('#result-display').html(foodTemplate(food));
+						toggle = true;
+
+						$.get('https://api.foursquare.com/v2/venues/search?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=40.7,-74%20&near=san+francisco&limit=5&query=' + mapResult, function (data) {
+							var ranVenue = Math.floor(Math.random() * 5);
+							console.log(data.response.venues[ranVenue].name);
+						});
+
+						} else { alert('Track not found, please try again.'); }
+					}
+					else {
+						if (data.response.terms) {
+						genre1 = data.response.terms[0].name; 
+						genre2 = data.response.terms[1].name; 
+
+						// splitted = genre.split(' ');
+
+							var genres = {genreOne: genre1, genreTwo: genre2};
+
+							$('#result-display').html(template(genres));
+							// reset fields
+
+						//map to food
+						var mapResult = map(genre1, genre2);
+						var food = { food: mapResult };
+						$('#result-display').html(foodTemplate(food));
+						toggle = true;
+
+						$.get('https://api.foursquare.com/v2/venues/search?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=40.7,-74%20&near=san+francisco&limit=5&query=' + mapResult, function (data) {
+							var ranVenue = Math.floor(Math.random() * 5);
+							console.log(data.response.venues[ranVenue].name);
+						});
+
+						} else { alert('Track not found, please try again.'); }
+					}
 				});
 
 		} else {
