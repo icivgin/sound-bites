@@ -60,6 +60,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  margin-right: 20px;
   
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 300;
@@ -122,4 +123,33 @@ textarea {
 }
 .no-pad-top {
 	padding-top:0px;
+}
+.navbar-right {
+	float: right;
+}
+.navbar-pad {
+	padding-right: 20px;
+}
+.navbar-default .navbar-nav>a {
+	color: white;
+	padding-left: 20px;
+	font-size: 16px;
+}
+.navbar-default .navbar-nav>a:hover {
+	color: #337ab7;
+}
+.navbar-default {
+	margin-top: 20px;
+	margin-bottom: 0px;
+	background-color: transparent;
+	border: 0px;
+}
+.shift-left {
+	margin-left: 20px;
+}
+.navbar-default .navbar-nav>li {
+	display: inline;
+}
+li {
+	display: inline;
 }
