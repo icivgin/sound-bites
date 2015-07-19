@@ -13,9 +13,10 @@
 	<title>Sound Bites</title>
 </head>
 <body>
-	<div class='jumbotron center'>
-		<h1>Sound Bites</h1>
-		<h3>By Ian Civgin</h3>
+	<div class='row center'>
+		<h3>Sound Bites</h3>
+		<h5>By Ian Civgin</h5>
+		<hr>
 	</div>
 
 	<!-- inputs -->
@@ -49,6 +50,39 @@
 	<!-- mapping function -->
 	<script type='text/x-handlebars-template' id='food-template'>
 		<h1> {{ food }} </h1>
+	</script>
+
+	<!-- final result script -->
+	<script type='text/x-handlebars-template' id='final-template'>
+		<div class='row'>
+			<h2 class='text-center'>Based on ...</h2>
+			<div class='col-lg-6'>
+				<img class='album-art right' src='{{ albumArt }}' />
+			</div>
+			<div class='col-lg-6 left'>
+				<h1> {{ trackNameResult }} </h1>
+				<h3> {{ artistNameResult }} </h3>
+			</div>
+		</div>
+		<hr>
+		<div class='row'>
+			<div class='col-lg-5'>
+				<p>lat {{ venueLat }}, lng {{ venueLng }}</p>
+			</div>
+			<div class='col-lg-7 left'>
+				<h2> {{ venueName }} </h2>
+				<h3> {{ venueCat }} </h3>
+				<p> {{ venueAddress }} </p>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-lg-8 col-lg-offset-2'>
+				<br>
+				<button type='submit' class='btn btn-primary inline btn-test-a'>New Search</button>
+				<button type='submit' class='btn btn-primary inline btn-test-b'>Search Again</button>
+			</div>
+			
+		</div>
 	</script>
 
 

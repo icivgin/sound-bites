@@ -8,11 +8,18 @@ var template = Handlebars.compile(source);
 var foodSource   = $("#food-template").html();
 var foodTemplate = Handlebars.compile(foodSource);
 
+var finalSource   = $("#final-template").html();
+var finalTemplate = Handlebars.compile(finalSource);
+
 var toggle = true;
+var albumArtGlobal = '';
 
 var apiKey = 'DGY3JGAZP1OFZR4RO';
 var clientID = 'J3QA1RADSXWM43QI0VTSC1EFFCFFZYKPZW2Z2PNVL5YEWU5T';
 var clientSecret = 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP';
+
+var trackName = $('#track-name').val();
+var artistName = $('#artist-name').val();
 
 function map (placeholder1, placeholder2) {
 	var random = Math.floor(Math.random() * 10);
@@ -25,7 +32,7 @@ function map (placeholder1, placeholder2) {
 			'ice cream',
 			'juice',
 			'smoothie',
-			'healthy',
+			'organic food',
 			'salad wrap',
 			'salad',
 			'fresh'
@@ -36,13 +43,13 @@ function map (placeholder1, placeholder2) {
 		var optionArr = [
 			'burgers',
 			'burgers and fries',
-			'shakes',
+			'american grill',
 			'beer',
 			'steaks',
-			'happy hour',
+			'brewery',
 			'live music',
 			'sports bar',
-			'sports bar',
+			'grill',
 			'burgers'
 		];
 		return optionArr[random];
@@ -55,8 +62,8 @@ function map (placeholder1, placeholder2) {
 			'brewery',
 			'small plates',
 			'wine bar',
-			'organic',
-			'healthy',
+			'organic restaurant',
+			'locally sourced',
 			'farm to table',
 			'homestyle'
 		];
@@ -71,9 +78,9 @@ function map (placeholder1, placeholder2) {
 			'ribs',
 			'waffles',
 			'soul food',
-			'speakeasy',
+			'speakeasy bar',
 			'hip hop bar',
-			'ciroc'
+			'night club lounge'
 		];
 		return optionArr[random];
 
@@ -83,10 +90,10 @@ function map (placeholder1, placeholder2) {
 			'soul food',
 			'cajun',
 			'southern',
-			'ciroc',
+			'cocktails',
 			'steak and wine',
 			'whisky',
-			'speakeasy',
+			'speakeasy bar',
 			'oysters',
 			'good cocktails'
 		];
@@ -156,12 +163,12 @@ function map (placeholder1, placeholder2) {
 		var optionArr = [
 			'burger',
 			'shake',
-			'jukebox',
 			'diner',
-			'retro',
+			'diner',
+			'retro restaurant',
 			'patty melt',
-			'old fashioned',
-			'root beer float',
+			'old fashioned restaurant',
+			'diner',
 			'soda bar',
 			'ice cream bar'
 		];
@@ -184,16 +191,16 @@ function map (placeholder1, placeholder2) {
 
 	} else if (placeholder1 == 'jazz' || placeholder1 == 'smooth jazz' || placeholder1 == 'bossa nova' || placeholder1 == 'vocal jazz' || placeholder1 == 'lounge' || placeholder1 == 'classical' ) {
 		var optionArr = [
-			'classy',
-			'dressy',
+			'fine dining',
+			'5 star',
 			'michelin',
 			'champagne',
 			'oysters',
 			'steak house',
 			'fine italian',
 			'fine dining',
-			'romantic',
-			'good view'
+			'romantic dining',
+			'good view restaurant'
 		];
 		return optionArr[random];
 
@@ -203,7 +210,7 @@ function map (placeholder1, placeholder2) {
 			'hippy cafe',
 			'beach food',
 			'acai',
-			'healthy',
+			'locally sourced',
 			'food truck',
 			'carribean food',
 			'chill bar',
@@ -212,7 +219,7 @@ function map (placeholder1, placeholder2) {
 		];
 		return optionArr[random];
 
-	} else if (placeholder1 == 'grime' || placeholder1 == 'grunge' || placeholder1 == 'punk' || placeholder1 == 'hardcore' || placeholder1 == 'emo' || placeholder1 == 'lo-fi' ) {
+	} else if (placeholder1 == 'grime' || placeholder1 == 'grunge' || placeholder1 == 'punk'  || placeholder1 == 'emo' || placeholder1 == 'lo-fi' ) {
 		var optionArr = [
 			'cofee shop',
 			'funky bar',
@@ -235,7 +242,7 @@ function map (placeholder1, placeholder2) {
 			'ice cream',
 			'juice',
 			'smoothie',
-			'healthy',
+			'locally sourced',
 			'salad wrap',
 			'salad',
 			'fresh'
@@ -266,7 +273,7 @@ function map (placeholder1, placeholder2) {
 			'small plates',
 			'wine bar',
 			'organic',
-			'healthy',
+			'locally sourced',
 			'farm to table',
 			'homestyle'
 		];
@@ -281,9 +288,9 @@ function map (placeholder1, placeholder2) {
 			'ribs',
 			'waffles',
 			'soul food',
-			'speakeasy',
+			'speakeasy bar',
 			'hip hop bar',
-			'ciroc'
+			'bbq'
 		];
 		return optionArr[random];
 
@@ -293,10 +300,10 @@ function map (placeholder1, placeholder2) {
 			'soul food',
 			'cajun',
 			'southern',
-			'ciroc',
+			'classy dinner',
 			'steak and wine',
 			'whisky',
-			'speakeasy',
+			'speakeasy bar',
 			'oysters',
 			'good cocktails'
 		];
@@ -366,12 +373,12 @@ function map (placeholder1, placeholder2) {
 		var optionArr = [
 			'burger',
 			'shake',
-			'jukebox',
 			'diner',
-			'retro',
+			'diner',
+			'retro restaurant',
 			'patty melt',
-			'old fashioned',
-			'root beer float',
+			'old fashioned restaurant',
+			'diner',
 			'soda bar',
 			'ice cream bar'
 		];
@@ -392,18 +399,18 @@ function map (placeholder1, placeholder2) {
 		];
 		return optionArr[random];
 
-	} else if (placeholder2 == 'jazz' || placeholder2 == 'smooth jazz' || placeholder2 == 'bossa nova' || placeholder2 == 'vocal jazz' || placeholder2 == 'lounge' || placeholder2 == 'classical' ) {
+	} else if (placeholder2 == 'jazz' || placeholder2 == 'smooth jazz' || placeholder2 == 'easy listening' || placeholder2 == 'bossa nova' || placeholder2 == 'vocal jazz' || placeholder2 == 'lounge' || placeholder2 == 'classical' ) {
 		var optionArr = [
-			'classy',
-			'dressy',
+			'fine dining',
+			'5 star',
 			'michelin',
 			'champagne',
 			'oysters',
 			'steak house',
 			'fine italian',
 			'fine dining',
-			'romantic',
-			'good view'
+			'romantic dining',
+			'good view restaurant'
 		];
 		return optionArr[random];
 
@@ -413,7 +420,7 @@ function map (placeholder1, placeholder2) {
 			'hippy cafe',
 			'beach food',
 			'acai',
-			'healthy',
+			'locally sourced',
 			'food truck',
 			'carribean food',
 			'chill bar',
@@ -439,6 +446,56 @@ function map (placeholder1, placeholder2) {
 	}
 }
 
+function getAlbumArt (trackName, artistName) {
+	$.get('https://api.spotify.com/v1/search?q=' + trackName + '%20' + artistName + '&type=track', function (data) {
+		albumArtGlobal = data.tracks.items[0].album.images[1].url;	
+	});
+}
+
+function getVenue () {
+
+	// HANDLEBARS genre templateing
+	// var genres = {genreOne: genre1, genreTwo: genre2};
+	// $('#result-display-primary').html(template(genres));
+
+	// Map genre to food!
+	var mapResult = map(genre1, genre2);
+	
+	// HANDLEBARS food templating
+	// var food = { food: mapResult };
+	// $('#result-display-secondary').html(foodTemplate(food));
+
+	// make call to 4square api
+	$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&near=san+francisco&limit=5&query=' + mapResult, function (data) {
+		console.log(data);
+		// checks that query returns 5 results
+		if(data.response.groups[0].items.length > 4) {
+			var ranVenue = Math.floor(Math.random() * 5);
+			var venue = data.response.groups[0].items[ranVenue].venue;
+			var trackName = $('#track-name').val();
+			var artistName = $('#artist-name').val();
+
+			var finalResult = {
+				trackNameResult: trackName,
+				artistNameResult: artistName,
+				albumArt: albumArtGlobal,
+				venueName: venue.name,
+				venueCat: venue.categories[0].name,
+				venueLat: venue.location.lat,
+				venueLng: venue.location.lng,
+				venueAddress: venue.location.formattedAddress
+			};
+
+			$('#result-display-tertiary').html(finalTemplate(finalResult));
+
+			// HANDLEBARS venue templating
+			// $('#result-display-tertiary').html(foodTemplate({food: venueName}));
+		} else {
+			alert('Oops! Something went wrong ... Try again!');
+		}
+	});
+}
+
 $('#submit-track').on('submit', function(event) {
 	event.preventDefault();
 	// var word = { track: $('#track-name').val(), artist: $('#artist-name').val()};
@@ -447,41 +504,19 @@ $('#submit-track').on('submit', function(event) {
 	$.get('https://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + $('#artist-name').val() + '&title=' + $('#track-name').val(), function (data) {
 		if (data.response.songs.length !== 0) {
 
+			getAlbumArt($('#track-name').val(), $('#artist-name').val());
+
 			// query for primary and secondary genres
 				$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + $('#artist-name').val() + '&format=json', function(data) {
 					
 					// query with secondary genre for more specificity
 					if (toggle) {	
-						
-						if (data.response.terms) {
 						genre1 = data.response.terms[0].name; 
 						genre2 = data.response.terms[1].name; 
 
-						// HANDLEBARS genre templateing
-						var genres = {genreOne: genre1, genreTwo: genre2};
-						$('#result-display-primary').html(template(genres));
-
-						// Map genre to food!
-						var mapResult = map(genre2, genre1);
+						if (data.response.terms) {
 						
-						// HANDLEBARS food templating
-						var food = { food: mapResult };
-						$('#result-display-secondary').html(foodTemplate(food));
-
-						// make call to 4square api
-						$.get('https://api.foursquare.com/v2/venues/search?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=40.7,-74%20&near=san+francisco&limit=5&query=' + mapResult, function (data) {
-
-							// checks for a error (Return of nothing) in the API query
-							if(data.response.venues[0]) {
-								var ranVenue = Math.floor(Math.random() * 5);
-								var venueName = data.response.venues[ranVenue].name;
-
-								// HANDLEBARS venue templating
-								$('#result-display-tertiary').html(foodTemplate({food: venueName}));
-							} else {
-								alert('Oops! Something went wrong ... Try again!');
-							}
-						});
+						getVenue();
 
 						//set toggle
 						toggle = true;
@@ -489,42 +524,18 @@ $('#submit-track').on('submit', function(event) {
 						} else { alert('Seems like that song doesn\'t exist ... Try a different search!'); }
 					}
 					// query with primary genre for diversity
-					else {
-						if (data.response.terms) {
-						genre1 = data.response.terms[0].name; 
-						genre2 = data.response.terms[1].name; 
+					// else {
+					// 	if (data.response.terms) {
+					// 	genre1 = data.response.terms[1].name; 
+					// 	genre2 = data.response.terms[0].name; 
 
-						// HANDLEBARS genre templateing
-						var genres = {genreOne: genre1, genreTwo: genre2};
-						$('#result-display-primary').html(template(genres));
+					// 	getVenue();
 
-						// Map genre to food!
-						var mapResult = map(genre1, genre2);
-						
-						// HANDLEBARS food templating
-						var food = { food: mapResult };
-						$('#result-display-secondary').html(foodTemplate(food));
+					// 	//set toggle
+					// 	toggle = true;
 
-						// make call to 4square api
-						$.get('https://api.foursquare.com/v2/venues/search?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=40.7,-74%20&near=san+francisco&limit=5&query=' + mapResult, function (data) {
-
-							// checks for a error (Return of nothing) in the API query
-							if(data.response.venues[0]) {
-								var ranVenue = Math.floor(Math.random() * 5);
-								var venueName = data.response.venues[ranVenue].name;
-
-								// HANDLEBARS venue templating
-								$('#result-display-tertiary').html(foodTemplate({food: venueName}));
-							} else {
-								alert('Oops! Something went wrong ... Try again!');
-							}
-						});
-
-						//set toggle
-						toggle = false;
-
-						} else { alert('Track not found, please try again.'); }
-					}
+					// 	} else { alert('Track not found, please try again.'); }
+					// }
 				});
 
 		} else {

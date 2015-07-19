@@ -4,24 +4,12 @@ FRI
 -------------------------------
 10:00pm - 12:30pm // Working on figuring out music genres (choosing music API) and thinking about how I'm going to convert to food genres, what that might look like. Also pushed to heroku and learned a little bit about handlebars.
 
+SAT
+--------------------------------
+5h 15m           // All preliminary api and mapping is done. Still needs tweaking. Started templating. Pushed to heroku.
 
-// query for genres
-	$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + $('#artist-name').val() + '&format=json', function(data) {
-			
-		if (data.response.terms) {
-		genre = data.response.terms[0].name; 
-		genre2 = data.response.terms[1].name; 
-		genre3 = data.response.terms[2].name; 
 
-		// splitted = genre.split(' ');
-			console.log(genre);
 
-			var genres = {genreOne: genre, genreTwo: genre2, genreThree: genre3};
-
-			$('#result-display').html(template(genres));
-			console.log(genre); 
-			console.log('sorry please try again');
-		} else { alert('Track not found, please try again.'); }
-	});
-
-// http://developer.echonest.com/api/v4/artist/songs?api_key=DGY3JGAZP1OFZR4RO&id=ARH6W4X1187B99274F&format=json&start=0&results=2
+Total
+--------------------------------
+7hr 45m

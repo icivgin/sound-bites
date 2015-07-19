@@ -2,6 +2,12 @@
 	float: center;
 	text-align: center;
 }
+.left {
+	text-align: left;
+}
+.right {
+	float: right;
+}
 .input-field {
 	padding-left: 10px;
 	margin-bottom: 10px;
@@ -10,4 +16,24 @@
 }
 .btn-submit {
 	width: 75%;
+}
+
+
+/*final-result template*/
+.album-art {
+	width: 150px;
+}
+.map {
+	width: 400px;
+}
+.inline {
+	display: inline;
+}
+.btn-test-a {
+	width: 35%;
+	margin-left: 10%;
+}
+.btn-test-b {
+	width: 35%;
+	margin-left: 15%;
 }
