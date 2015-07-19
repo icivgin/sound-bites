@@ -470,17 +470,23 @@ $('#submit-track').on('submit', function(event) {
 
 						// make call to 4square api
 						$.get('https://api.foursquare.com/v2/venues/search?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=40.7,-74%20&near=san+francisco&limit=5&query=' + mapResult, function (data) {
-							var ranVenue = Math.floor(Math.random() * 5);
-							var venueName = data.response.venues[ranVenue].name;
 
-							// HANDLEBARS venue templating
-							$('#result-display-tertiary').html(foodTemplate({food: venueName}));
+							// checks for a error (Return of nothing) in the API query
+							if(data.response.venues[0]) {
+								var ranVenue = Math.floor(Math.random() * 5);
+								var venueName = data.response.venues[ranVenue].name;
+
+								// HANDLEBARS venue templating
+								$('#result-display-tertiary').html(foodTemplate({food: venueName}));
+							} else {
+								alert('Oops! Something went wrong ... Try again!');
+							}
 						});
 
 						//set toggle
 						toggle = true;
 
-						} else { alert('Track not found, please try again.'); }
+						} else { alert('Seems like that song doesn\'t exist ... Try a different search!'); }
 					}
 					// query with primary genre for diversity
 					else {
@@ -501,11 +507,17 @@ $('#submit-track').on('submit', function(event) {
 
 						// make call to 4square api
 						$.get('https://api.foursquare.com/v2/venues/search?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=40.7,-74%20&near=san+francisco&limit=5&query=' + mapResult, function (data) {
-							var ranVenue = Math.floor(Math.random() * 5);
-							var venueName = data.response.venues[ranVenue].name;
 
-							// HANDLEBARS venue templating
-							$('#result-display-tertiary').html(foodTemplate({food: venueName}));
+							// checks for a error (Return of nothing) in the API query
+							if(data.response.venues[0]) {
+								var ranVenue = Math.floor(Math.random() * 5);
+								var venueName = data.response.venues[ranVenue].name;
+
+								// HANDLEBARS venue templating
+								$('#result-display-tertiary').html(foodTemplate({food: venueName}));
+							} else {
+								alert('Oops! Something went wrong ... Try again!');
+							}
 						});
 
 						//set toggle

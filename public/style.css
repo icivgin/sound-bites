@@ -2,3 +2,12 @@
 	float: center;
 	text-align: center;
 }
+.input-field {
+	padding-left: 10px;
+	margin-bottom: 10px;
+	height: 50px;
+	width: 75%;
+}
+.btn-submit {
+	width: 75%;
+}
