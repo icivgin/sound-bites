@@ -2,6 +2,13 @@ $(function() {
 
 //put this all in a controller
 
+// var map = L.map('map').setView([51.505, -0.09], 13);
+
+// L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+//     attribution: 'test',
+//     maxZoom: 20,
+// }).addTo(map);
+
 var source   = $("#result-template").html();
 var template = Handlebars.compile(source);
 
@@ -21,7 +28,13 @@ var clientSecret = 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP';
 var trackName = $('#track-name').val();
 var artistName = $('#artist-name').val();
 
-function map (placeholder1, placeholder2) {
+String.prototype.capitalize = function(){
+    return this.toLowerCase().replace( /\b\w/g, function (m) {
+        return m.toUpperCase();
+    });
+};
+
+function mapGenre (placeholder1, placeholder2) {
 	var random = Math.floor(Math.random() * 10);
 
 	if (placeholder1 == 'pop' || placeholder1 == 'teen pop' || placeholder1 == 'k-pop' || placeholder1 == 'dance pop' ) {
@@ -459,7 +472,7 @@ function getVenue () {
 	// $('#result-display-primary').html(template(genres));
 
 	// Map genre to food!
-	var mapResult = map(genre1, genre2);
+	var mapResult = mapGenre(genre1, genre2);
 	
 	// HANDLEBARS food templating
 	// var food = { food: mapResult };
@@ -472,8 +485,8 @@ function getVenue () {
 		if(data.response.groups[0].items.length > 9) {
 			var ranVenue = Math.floor(Math.random() * 10);
 			var venue = data.response.groups[0].items[ranVenue].venue;
-			var trackName = $('#track-name').val();
-			var artistName = $('#artist-name').val();
+			var trackName = $('#track-name').val().capitalize();
+			var artistName = $('#artist-name').val().capitalize();
 
 			var finalResult = {
 				trackNameResult: trackName,
@@ -483,13 +496,27 @@ function getVenue () {
 				venueCat: venue.categories[0].name,
 				venueLat: venue.location.lat,
 				venueLng: venue.location.lng,
-				venueAddress: venue.location.formattedAddress
+				venueAddressA: venue.location.formattedAddress[0],
+				venueAddressB: venue.location.formattedAddress[1],
+				venueRating: venue.rating
 			};
 
 			$('#result-display-tertiary').html(finalTemplate(finalResult));
 
-			// HANDLEBARS venue templating
-			// $('#result-display-tertiary').html(foodTemplate({food: venueName}));
+			//set up map
+			var map = L.map('map').setView([finalResult.venueLat, finalResult.venueLng], 15);
+
+			//add tile
+			//dark - http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png
+			//light - http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png
+			L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+			    attribution: '',
+			    maxZoom: 20,
+			}).addTo(map);
+
+			//add marker
+			var marker = L.marker([finalResult.venueLat, finalResult.venueLng]).addTo(map);
+
 		} else {
 			alert('Oops! Something went wrong ... Try again!');
 		}

@@ -5,6 +5,9 @@
 .left {
 	text-align: left;
 }
+.large {
+	font-size:48px;
+}
 .right {
 	float: right;
 }
@@ -13,6 +16,9 @@
 	margin-bottom: 10px;
 	height: 50px;
 	width: 75%;
+	/*background-color: transparent;*/
+	color: white;
+	font-size: 20px;
 }
 .btn-submit {
 	width: 75%;
@@ -21,7 +27,8 @@
 
 /*final-result template*/
 .album-art {
-	width: 150px;
+	width: 200px;
+	margin-right: 15px;
 }
 .map {
 	width: 400px;
@@ -36,4 +43,83 @@
 .btn-test-b {
 	width: 35%;
 	margin-left: 15%;
+}
+
+#map { height: 400px; }
+
+.result-track-name {
+	margin-top: 5px;
+}
+.result-artist-name {
+	margin-top: 5px;
+}
+
+body { 
+  background: url(http://i.imgur.com/z7MX1wX.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  color: white;
+}
+
+.results {
+	padding: 20px;
+	border-radius: 10px;
+}
+.top {
+	margin-top:50px;
+}
+
+
+
+input,
+textarea,
+select {
+    border: 1px solid rgba(120, 120, 120, .5);
+    background: #444;
+    color: white;
+    background: rgba(64, 64, 64, .5);
+    -webkit-appearance: none;
+  
+}
+input:focus,
+textarea:focus,
+select:focus { outline-color: rgba(180, 180, 180, .5) }
+textarea {
+    height: 55px;
+    background: grey;
+}
+
+::-webkit-input-placeholder {
+   color: lightgrey;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: lightgrey;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: lightgrey;  
+}
+
+:-ms-input-placeholder {  
+   color: lightgrey;  
+}
+
+.rating {
+	background: #337ab7;
+	font-size:16px;
+	border-radius: 10px;
+	padding: 10px;
+	padding-bottom: 10px;
+}
+.no-pad-left {
+	padding-left:0px;
+}
+.no-pad-top {
+	padding-top:0px;
 }

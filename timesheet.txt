@@ -9,7 +9,11 @@ SAT
 5h 15m           // All preliminary api and mapping is done. Still needs tweaking. Started templating. Pushed to heroku.
 
 
+SUN
+--------------------------------
+5h 30m           // Lots of stuff.
+
 
 Total
 --------------------------------
-7hr 45m
+13hr 15m
