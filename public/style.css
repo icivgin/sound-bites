@@ -20,6 +20,9 @@
 	color: white;
 	font-size: 20px;
 }
+.top-hr {
+	margin-bottom: 10px;
+}
 .btn-submit {
 	width: 75%;
 }
@@ -28,7 +31,6 @@
 /*final-result template*/
 .album-art {
 	width: 200px;
-	margin-right: 15px;
 }
 .map {
 	width: 400px;
@@ -55,7 +57,8 @@
 }
 
 body { 
-  background: url(http://i.imgur.com/z7MX1wX.jpg) no-repeat center center fixed; 
+	/*http://i.imgur.com/z7MX1wX.jpg*/
+  background: url(http://i.imgur.com/g8yFXvR.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -128,7 +131,7 @@ textarea {
 	float: right;
 }
 .navbar-pad {
-	padding-right: 20px;
+	padding-right: 30px;
 }
 .navbar-default .navbar-nav>a {
 	color: white;
@@ -137,12 +140,20 @@ textarea {
 }
 .navbar-default .navbar-nav>a:hover {
 	color: #337ab7;
+	text-decoration: none;
+}
+.navbar-default .navbar-nav>a:active {
+	color: #337ab7;
+	text-decoration: none;
 }
 .navbar-default {
 	margin-top: 20px;
 	margin-bottom: 0px;
 	background-color: transparent;
 	border: 0px;
+}
+.navbar-default .navbar-nav>a {
+	color: lightgrey;
 }
 .shift-left {
 	margin-left: 20px;
@@ -152,4 +163,35 @@ textarea {
 }
 li {
 	display: inline;
+}
+#footer {
+	background: transparent;
+	width:100%;
+	height:30px;
+	position:absolute;
+	bottom:0;
+	left:15;
+	color: lightgrey;
+}
+html,
+body {
+	padding:0;
+	height:99%;
+}
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+.large-footer {
+	font-size: 16px;
+}
+.small {
+	font-size: 14px;
+}
+#footer a {
+	/*color: grey;*/
+}
+.footer-right {
+	float: right;
+	margin-right: 15px;
 }

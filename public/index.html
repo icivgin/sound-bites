@@ -15,42 +15,47 @@
 	<title>Sound Bites</title>
 </head>
 <body>
-	<div class='shift-left'>
-	<!-- navbar -->
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <!-- Brand and toggle get grouped for better mobile display -->
-	    <div class="navbar-header right navbar-pad">
-	      <ul class="nav navbar-nav">
-	        <a href="#">Sign Up</a>
-	        <a href="#">Sign In</a>        
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
+	<div id='wrapper'>
+		<div class='shift-left'>
+		<!-- navbar -->
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header right navbar-pad">
+		      <ul class="nav navbar-nav">
+		        <a href="#">Sign Up</a>
+		        <a href="#">Sign In</a>        
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
 
-	<!-- inputs -->
-	<div class='row center'>
-		<div class='col-md-4 col-md-offset-4'>
-			<h1 class='large top'>Welcome to SoundBites!</h1>
-			<h2 class='helvetica'>Enter the last song you listened to and get eatin'.</h2><br><hr><br>
-			<form id='submit-track'>
-				<input type='text' class='input-field' id='track-name' placeholder="Enter the song's name" required autofocus></input><br>
+		<!-- inputs -->
+		<div class='row center'>
+			<div class='col-md-4 col-md-offset-4'>
+				<h1 class='large top'>Welcome to SoundBites!</h1>
+				<h2 class='helvetica'>Enter the last song you listened to and find your next new spot.</h2><hr class='top-hr'><br>
+				<form id='submit-track'>
+					<input type='text' class='input-field' id='track-name' placeholder="Song's name here ..." required autofocus></input><br>
 
-				<input type='text' class='input-field' id='artist-name' placeholder="Enter the artist's name" required></input><br>
+					<input type='text' class='input-field' id='artist-name' placeholder="Artist's name here ..." required></input><br>
 
-				<!-- //button -->
-				<button type='submit' class='btn btn-primary btn-submit'>Submit</button><br>
-			</form>
+					<!-- //button -->
+					<button type='submit' class='btn btn-primary btn-submit'>Submit</button><br>
+				</form>
+			</div>
 		</div>
-	</div>
-	
-	<!-- display div -->
-	<div class='row center'>
-		<div class='col-md-6 col-md-offset-3'>
-			<div id='result-display-primary'></div>
-			<div id='result-display-secondary'></div>
-			<div id='result-display-tertiary'></div>
+		
+		<!-- display div -->
+		<div class='row center'>
+			<div class='col-md-6 col-md-offset-3'>
+				<div id='result-display-primary'></div>
+				<div id='result-display-secondary'></div>
+				<div id='result-display-tertiary'></div>
+			</div>
+		</div>
+		<div id='footer'>
+			<p>Created by <a class='footer-ian' href='http://www.iancivgin.com'>Ian Civgin</a><span class='footer-right small'>Powered by Foursquare and EchoNest. Image by Tami Seymour.</span></p>
 		</div>
 	</div>
 
@@ -70,12 +75,12 @@
 		<div class='row'>
 			<h1 class='text-center'>Based on ...</h1>
 			<br>
-			<div class='col-lg-6'>
+			<div class='col-lg-7'>
 				<img class='album-art right' src='{{ albumArt }}' />
 			</div>
-			<div class='col-lg-6 left'>
+			<div class='col-lg-5 left no-pad-left'>
 				<h2 class='result-track-name'> {{ trackNameResult }} </h2>
-				<h3 class='result-artist-name'> {{ artistNameResult }} </h3>
+				<h4 class='result-artist-name'> {{ artistNameResult }} </h4>
 			</div>
 		</div>
 		<hr>
@@ -85,16 +90,16 @@
 			</div>
 			<div class='col-lg-5 left'>
 				<div class='row'>
-				<div class='col-lg-10 no-pad-left'>
-					<h2 class='inline left'>{{ venueName }}</h2>
-					<h4 class='no-pad-top'>{{ venueCat }}</h4>
-				</div>
-				<div class='col-lg-2'>
-					<p class='rating right'> {{venueRating}}/10 </p>
-				</div>
+					<div class='col-lg-10 no-pad-left'>
+						<h2 class='inline left'>{{ venueName }}</h2>
+						<h4 class='no-pad-top'>{{ venueCat }}</h4>
+					</div>
+					<div class='col-lg-2'>
+						<p class='rating right'> {{venueRating}}/10 </p>
+					</div>
 				</div>
 				<div class='row'>
-				<p>{{ venueAddressA }}<br>{{ venueAddressB }}</p>
+					<p>{{ venueAddressA }}<br>{{ venueAddressB }}</p>
 				</div>
 			</div>
 		</div>
