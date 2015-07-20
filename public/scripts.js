@@ -509,7 +509,7 @@ function getVenue () {
 			//add tile
 			//dark - http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png
 			//light - http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png
-			L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+			L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 			    attribution: '',
 			    maxZoom: 20,
 			}).addTo(map);
