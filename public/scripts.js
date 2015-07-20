@@ -500,7 +500,7 @@ function getVenue () {
 				venueAddressB: venue.location.formattedAddress[1],
 				venueRating: venue.rating
 			};
-
+			
 			$('#result-display-tertiary').html(finalTemplate(finalResult));
 
 			//set up map
@@ -550,25 +550,12 @@ $('#submit-track').on('submit', function(event) {
 
 						} else { alert('Seems like that song doesn\'t exist ... Try a different search!'); }
 					}
-					// query with primary genre for diversity
-					// else {
-					// 	if (data.response.terms) {
-					// 	genre1 = data.response.terms[1].name; 
-					// 	genre2 = data.response.terms[0].name; 
-
-					// 	getVenue();
-
-					// 	//set toggle
-					// 	toggle = true;
-
-					// 	} else { alert('Track not found, please try again.'); }
-					// }
 				});
 
 		} else {
 			alert('Seems like that song doesn\'t exist ... Try a different search!');
 		}
-	})
+	});
 });
 
 })
