@@ -115,9 +115,9 @@ textarea {
 }
 
 .rating {
-	background: #337ab7;
+	background: green;
 	font-size:16px;
-	border-radius: 10px;
+	border-radius: 20px;
 	padding: 10px;
 	padding-bottom: 10px;
 }
