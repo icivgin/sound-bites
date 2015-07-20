@@ -58,7 +58,7 @@
 
 body { 
 	/*http://i.imgur.com/z7MX1wX.jpg*/
-  background: url(http://i.imgur.com/g8yFXvR.jpg) no-repeat center center fixed; 
+  background: url(https://i.imgur.com/g8yFXvR.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -71,7 +71,7 @@ body {
 }
 
 .results {
-	padding: 20px;
+	padding: 0px 20px 20px 20px;
 	border-radius: 10px;
 }
 .top {
@@ -193,5 +193,11 @@ body {
 }
 .footer-right {
 	float: right;
+	margin-right: 15px;
+}
+.no-margin-top {
+	margin-top:0px;
+}
+.venue-name {
 	margin-right: 15px;
 }
