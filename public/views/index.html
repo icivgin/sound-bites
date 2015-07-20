@@ -22,12 +22,7 @@
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header right navbar-pad">
-		      <ul class="nav navbar-nav">
-		        <a href="/signup">Sign Up</a>
-		        <a href="/login">Login</a>         
-		      </ul>
-		    </div><!-- /.navbar-collapse -->
+		    <div class="navbar-header right navbar-pad" id='navbar-view'></div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 
@@ -44,6 +39,23 @@
 			<p>Created by <a class='footer-ian' href='http://www.iancivgin.com'>Ian Civgin</a><span class='footer-right small'>Powered by Foursquare and EchoNest. Image by Tami Seymour.</span></p>
 		</div>
 	</div>
+
+	<!-- navbar user logged in -->
+	<script type ="text/x-handlebars-template" id='user-true'>
+		<ul class="nav navbar-nav">
+		  <p class='inline'><i>Hi, {{ user }} </i></p>
+		  <a href="#">Profile</a>
+		  <a href="/logout">Logout</a>
+		</ul>
+	</script>
+
+	<!-- navbar no user -->
+	<script type ="text/x-handlebars-template" id='user-false'>
+		<ul class="nav navbar-nav">
+		  <a href="/signup">Sign Up</a>
+		  <a href="/login">Login</a>
+		</ul>
+	</script>
 
 	<script type="text/x-handlebars-template" id='search-template'>
 		<div class='row center'>

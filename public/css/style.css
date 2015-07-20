@@ -133,8 +133,9 @@ textarea {
 .navbar-pad {
 	padding-right: 30px;
 }
-.navbar-default .navbar-nav>a {
-	color: white;
+.navbar-default .navbar-nav > a,
+.navbar-default .navbar-nav > p {
+	color: lightgrey;
 	padding-left: 20px;
 	font-size: 16px;
 }
@@ -151,9 +152,6 @@ textarea {
 	margin-bottom: 0px;
 	background-color: transparent;
 	border: 0px;
-}
-.navbar-default .navbar-nav>a {
-	color: lightgrey;
 }
 .shift-left {
 	margin-left: 20px;

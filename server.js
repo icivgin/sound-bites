@@ -17,8 +17,44 @@ app.use(cors());
 // serve js and css files from public folder
 app.use(express.static(__dirname + '/public'));
 
+app.use(session({
+	saveUninitialized: true,
+	resave: true,
+	secret: 'askldfjalwkefhjasdkjch',
+	cookie: { maxAge: 60000 }
+}));
+
+// middleware to manage sessions
+app.use('/', function (req, res, next) {
+  // saves userId in session for logged-in user
+  req.login = function (user) {
+    req.session.userId = user.id;
+  };
+
+  // finds user currently logged in based on `session.userId`
+  req.currentUser = function (callback) {
+    User.findOne({_id: req.session.userId}, function (err, user) {
+      req.user = user;
+      callback(null, user);
+    });
+  };
+
+  // destroy `session.userId` to log out user
+  req.logout = function () {
+    req.session.userId = null;
+    req.user = null;
+  };
+
+  next();
+});
+
+app.get('/logout', function (req, res, next) {
+	req.logout();
+	res.redirect('/');
+});
+
 app.get('/', function (req, res, next) {
-	res.sendFile(__dirname + '/public/views/index.html')
+	res.sendFile(__dirname + '/public/views/index.html');
 });
 
 app.get('/signup', function (req, res, next) {
@@ -30,7 +66,8 @@ app.post('/signup', function (req, res) {
 	console.log(newUser);
 
 	User.createSecure(newUser, function (err, user) {
-		res.sendFile(__dirname + '/public/views/index.html');
+		req.login(user);
+		res.redirect('/');
 	});
 });
 
@@ -49,8 +86,19 @@ app.post('/login', function (req, res) {
 			console.log(user);
 			res.sendFile(__dirname + '/public/views/error.html');
 		} else {
-		// req.login(user);
-		res.sendFile(__dirname + '/public/views/test.html');
+		req.login(user);
+		res.redirect('/');
+		}
+	});
+});
+
+//API
+app.get('/api/me', function(req, res) {
+	req.currentUser(function (err, user) {
+		if (user) {
+			res.send(user);
+		} else {
+			res.send(null);
 		}
 	});
 });

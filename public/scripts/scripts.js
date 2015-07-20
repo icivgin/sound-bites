@@ -8,6 +8,12 @@ var searchTemplate = Handlebars.compile(searchSource);
 var finalSource = $('#result-template').html();
 var finalTemplate = Handlebars.compile(finalSource);
 
+var userTrue = $('#user-true').html();
+var userTrueTemplate = Handlebars.compile(userTrue);
+
+var userFalse = $('#user-false').html();
+var userFalseTemplate = Handlebars.compile(userFalse);
+
 var toggle = true;
 var albumArtGlobal = '';
 
@@ -17,6 +23,14 @@ var clientSecret = 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP';
 
 var trackName = '';
 var artistName = '';
+
+$.get('/api/me', function (data) {
+	if(data) {
+		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
+	} else {
+		$('#navbar-view').html(userFalseTemplate())
+	}
+});
 
 //load search on page load
 $('#search-view').html(searchTemplate());
@@ -105,18 +119,18 @@ function mapGenre (placeholder1, placeholder2) {
 		];
 		return optionArr[random];
 
-	} else if (placeholder1 == 'edm' || placeholder1 == 'dubstep' || placeholder1 == 'electronica' || placeholder1 == 'eurodance' || placeholder1 == 'experimental' || placeholder1 == 'house' || placeholder1 == 'german techno' || placeholder1 == 'glitch' || placeholder1 == 'techno' || placeholder1 == 'trance' || placeholder1 == 'drum and bass' ) {
+	} else if (placeholder1 == 'edm' || placeholder1 == 'dubstep' || placeholder1 == 'electronica' || placeholder1 == 'electronic' || placeholder1 == 'eurodance' || placeholder1 == 'experimental' || placeholder1 == 'house' || placeholder1 == 'german techno' || placeholder1 == 'glitch' || placeholder1 == 'techno' || placeholder1 == 'trance' || placeholder1 == 'drum and bass' ) {
 		var optionArr = [
 			'party',
 			'loud',
 			'late night',
-			'dance',
+			'dance club',
 			'club',
 			'groups',
 			'pasta',
 			'burrito',
 			'club',
-			'dance'
+			'dance club'
 		];
 		return optionArr[random];
 
@@ -315,18 +329,18 @@ function mapGenre (placeholder1, placeholder2) {
 		];
 		return optionArr[random];
 
-	} else if (placeholder2 == 'edm' || placeholder2 == 'dubstep' || placeholder2 == 'electronica' || placeholder2 == 'eurodance' || placeholder2 == 'experimental' || placeholder2 == 'house' || placeholder2 == 'german techno' || placeholder2 == 'glitch' || placeholder2 == 'techno' || placeholder2 == 'trance' || placeholder2 == 'drum and bass' ) {
+	} else if (placeholder2 == 'edm' || placeholder2 == 'dubstep' || placeholder2 == 'electronica' || placeholder1 == 'electronic' || placeholder2 == 'eurodance' || placeholder2 == 'experimental' || placeholder2 == 'house' || placeholder2 == 'german techno' || placeholder2 == 'glitch' || placeholder2 == 'techno' || placeholder2 == 'trance' || placeholder2 == 'drum and bass' ) {
 		var optionArr = [
 			'party',
 			'loud',
 			'late night',
-			'dance',
+			'dance club',
 			'club',
 			'groups',
 			'pasta',
 			'burrito',
 			'club',
-			'dance'
+			'dance club'
 		];
 		return optionArr[random];
 
@@ -472,6 +486,8 @@ function getResult (trackName, artistName) {
 					if (toggle) {	
 						genre1 = data.response.terms[0].name; 
 						genre2 = data.response.terms[1].name; 
+
+						console.log(genre1 + ' ' + genre2);
 
 						if (data.response.terms) {
 						
