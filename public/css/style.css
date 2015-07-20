@@ -21,7 +21,7 @@
 	font-size: 20px;
 }
 .top-hr {
-	margin-bottom: 10px;
+	margin-bottom: 7px;
 }
 .btn-submit {
 	width: 75%;
@@ -200,4 +200,7 @@ body {
 }
 .venue-name {
 	margin-right: 15px;
+}
+.instructional {
+	margin-top: 10px;
 }
