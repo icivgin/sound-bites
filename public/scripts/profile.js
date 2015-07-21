@@ -24,10 +24,12 @@ $.get('/api/me', function (data) {
 		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
 
 		$.get('/api/users/' + globalUserData._id, function (data) {
-			console.log(data);
-			for(i=0; i<data.length; i++) {
-				$('#history-view').append(resultTemplate(data[i]));
-			}
+
+			$('#history-view').append(resultTemplate());
+
+			// for(i=0; i<data.length; i++) {
+			// 	$('#history-view').append(resultTemplate(data[i]));
+			// }
 		});
 
 	} else {
