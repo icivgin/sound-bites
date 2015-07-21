@@ -22,6 +22,9 @@
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class='navbar-header left'>
+		    	<a href='/'><img class='brand-img' src='http://i.imgur.com/YIHwwKr.png' /></a>
+		    </div>
 		    <div class="navbar-header right navbar-pad" id='navbar-view'></div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
@@ -36,7 +39,7 @@
 			</div>
 		</div>
 		<div id='footer'>
-			<p>Created by <a target='_blank' class='footer-ian' href='http://www.iancivgin.com'>Ian Civgin</a><span class='footer-right small'>Powered by Foursquare and Echo Nest. Image by Martin Brigden.</span></p>
+			<p><span class='attribute-left'>Created by </span><a target='_blank' href='http://www.iancivgin.com'>Ian Civgin</a><span class='footer-right small'>Powered by Foursquare and Echo Nest. Image by Martin Brigden.</span></p>
 		</div>
 	</div>
 
@@ -56,11 +59,12 @@
 		  <a href="/login">Login</a>
 		</ul>
 	</script>
-
+	
+	<!-- search -->
 	<script type="text/x-handlebars-template" id='search-template'>
 		<div class='row center'>
 			<div class='col-md-4 col-md-offset-4'>
-				<h1 class='large top'>Welcome to SoundBites!{{ test }}</h1>
+				<h1 class='large top'>Hey, {{user}}!</h1>
 				<h2 class='helvetica'>Enter the last song you listened to and find your next new spot.</h2><hr class='top-hr'><br>
 				<form id='submit-track'>
 					<input type='text' class='input-field' id='track-name' placeholder="Song's name here ..." required autofocus></input><br>
@@ -93,7 +97,7 @@
 					<img class='album-art right' src='{{ albumArt }}' />
 				</div>
 				<div class='col-lg-5 left no-pad-left'>
-					<h2 class='result-track-name' id='research-name'> {{ trackNameResult }} </h2>
+					<h2 class='result-track-name' id='research-name'>{{ trackNameResult }} </h2>
 					<h4 class='result-artist-name' id='research-artist'> {{ artistNameResult }} </h4>
 				</div>
 			</div>
@@ -113,16 +117,14 @@
 						</div>
 					</div>
 					<div class='row'>
-						<p>{{ venueAddressA }}<br>{{ venueAddressB }}</p>
-						<a target='_blank' href='{{ venueURL }}'>Visit their website</a>
+						<p><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span>&nbsp;&nbsp;{{ venueAddressA }}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ venueAddressB }}</p>
+						<a target='_blank' class='venue-website' href='https://maps.google.com/maps?q={{ venueAddressA }} {{ venueAddressB }}'><span class='glyphicon glyphicon-road' aria-hidden='true'></span>&nbsp;&nbsp;Get directions</a>
+						<a target='_blank' class='venue-website' href='{{ venueURL }}'><br><span class='glyphicon glyphicon-globe' aria-hidden='true'></span>&nbsp;&nbsp;Visit their website</a>
 					</div>
-				</div>
-			</div>
-			<div class='row'>
-				<div class='col-lg-8 col-lg-offset-2'>
-					<br>
-					<button type='button' class='btn btn-primary inline btn-test-a' id='new-search'>New Search</button>
-					<button type='submit' class='btn btn-primary inline btn-test-b' id='search-again'>Search Again</button>
+					<div class='row result-btn-margin'>
+						<button type='button' class='btn btn-primary inline result-btn' id='new-search'>New Search</button>
+						<button type='submit' class='btn btn-primary inline result-btn' id='search-again'>Search Again</button>
+					</div>
 				</div>
 			</div>
 		</div>

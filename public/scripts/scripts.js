@@ -24,19 +24,38 @@ var clientSecret = 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP';
 var trackName = '';
 var artistName = '';
 
+var lat;
+var lng;
+
+function saveGeo(position) {
+	lat = position.coords.latitude;
+	lng = position.coords.longitude;
+	addEventHandlers();
+}
+
+var geo = navigator.geolocation.getCurrentPosition(saveGeo);
+
 var globalUserData;
 
-$.get('/v1/me', function (data) {
-	if(data) {
-		globalUserData = data;
-		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
-	} else {
-		$('#navbar-view').html(userFalseTemplate())
-	}
-});
+function setupView() {
+	$.get('/v1/me', function (data) {
+		if(data) {
+			globalUserData = data;
+			$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
+			$('#search-view').html(searchTemplate({user: globalUserData.firstName.capitalize()}));
+			// addEventHandlers();
+		} else {
+			$('#navbar-view').html(userFalseTemplate());
+			$('#search-view').html(searchTemplate({user:'you'}));
+			// addEventHandlers();
+		}
+	});
+}
+
+setupView();
 
 //load search on page load
-$('#search-view').html(searchTemplate());
+// $('#search-view').html(searchTemplate({user:'you'}));
 
 String.prototype.capitalize = function(){
     return this.toLowerCase().replace( /\b\w/g, function (m) {
@@ -67,23 +86,13 @@ function getResult (trackName, artistName) {
 
 						if (data.response.terms) {
 						
-						//get venue
-						// HANDLEBARS genre templateing
-						// var genres = {genreOne: genre1, genreTwo: genre2};
-						// $('#result-display-primary').html(template(genres));
-
-						// Map genre to food!
-						// var mapResult = mapGenre(genre1, genre2);
-						
-						// HANDLEBARS food templating
-						// var food = { food: mapResult };
-						// $('#result-display-secondary').html(foodTemplate(food));
+						//ajax request to api search (mapping)
 						$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 						// make call to 4square api
-							$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&near=san+francisco&limit=10&query=' + data, function (data) {
+							$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + (lat || 37.7833) + ',' + (lng || 122.4167) + '&llAcc=10000.0&limit=10&query=' + data, function (data) {
 								// checks that query returns 5 results
-								if(data.response.groups[0].items.length > 9) {
-									var ranVenue = Math.floor(Math.random() * 10);
+								if(data.response.groups[0].items.length > 1) {
+									var ranVenue = Math.floor(Math.random() * data.response.groups[0].items.length);
 									var venue = data.response.groups[0].items[ranVenue].venue;
 
 									var trackNameDeep = trackName.capitalize();
@@ -99,7 +108,7 @@ function getResult (trackName, artistName) {
 										venueLng: venue.location.lng,
 										venueAddressA: venue.location.formattedAddress[0],
 										venueAddressB: venue.location.formattedAddress[1],
-										venueRating: venue.rating,
+										venueRating: venue.rating.toFixed(1),
 										venueURL: venue.url
 									};
 
@@ -126,8 +135,7 @@ function getResult (trackName, artistName) {
 										event.preventDefault();
 										
 										$('#result-view').html('');
-										$('#search-view').html(searchTemplate());
-										addEventHandlers();
+										setupView();
 									});
 
 									//on search again click
@@ -137,21 +145,24 @@ function getResult (trackName, artistName) {
 									})
 
 									//set up map
-									var map = L.map('map').setView([finalResult.venueLat, finalResult.venueLng], 15);
+									var map = L.map('map').setView([finalResult.venueLat, finalResult.venueLng], 12);
 
 									//add tile
 									//dark - http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png
 									//light - http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png
-									L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+									L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 									    attribution: '',
 									    maxZoom: 20,
+									    id: 'icivgin.b6d584ee',
+									    accessToken: 'pk.eyJ1IjoiaWNpdmdpbiIsImEiOiI3MmVjZmMyNmM2ZWYxMGQ2MDAzMWU5MDhiZGI5ZmJkNSJ9.uOGm9rJve_i8WdJFKT3ljg'
 									}).addTo(map);
 
 									//add marker
 									var marker = L.marker([finalResult.venueLat, finalResult.venueLng]).addTo(map);
 
 								} else {
-									alert('Oops! Something went wrong ... Try again!');
+									console.log(data);
+									alert('Not enough data');
 								}
 							});
 						});
@@ -168,14 +179,6 @@ function getResult (trackName, artistName) {
 		}
 	});
 }
-
-//on submit of search field
-$('#submit-track').on('submit', function(event) {
-	event.preventDefault();
-	// var word = { track: $('#track-name').val(), artist: $('#artist-name').val()};
-
-	getResult($('#track-name').val(), $('#artist-name').val());
-});
 
 function addEventHandlers () {
 	//on submit of search field
