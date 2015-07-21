@@ -57,8 +57,8 @@ $.get('/v1/me', function (data) {
 		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
 
 		$.get('/v1/users/' + globalUserData._id, function (data) {
-			for(i=0; i<data.length; i++) {
-				$('#results-view').append(resultTemplate(data[i]));
+			for(i=0; i<data.myResults.length; i++) {
+				$('#results-view').append(resultTemplate(data.myResults[i]));
 				if(i===0) {
 					var that = $('#results-view').find('.result-div');
 					lastDiv = that;

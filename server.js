@@ -116,7 +116,7 @@ app.get('/v1/users/:userId', function (req, res) {
 	var targetId = req.params.userId;
 
 	db.User.findOne({_id: targetId}, function (err, foundUser) {
-		res.send(foundUser.myResults);
+		res.send(foundUser);
 	});
 });
 
@@ -124,7 +124,6 @@ app.put('/v1/users/:userId', function (req, res) {
 	var targetId = req.params.userId;
 
 	db.User.findOne({_id: targetId}, function (err, foundUser) {
-		console.log(foundUser.myResults);
 		foundUser.myResults.push({
 			trackNameResult: req.body.trackNameResult,
 			artistNameResult: req.body.artistNameResult,
@@ -149,7 +148,6 @@ app.get('/v1/search/:inputA/:inputB', function (req, res) {
 	Map.map(req.params.inputA, req.params.inputB, function (query) {
 		res.send(query);
 	});
-	
 });
 
 app.listen(process.env.PORT || 3000);
