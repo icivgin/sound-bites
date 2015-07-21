@@ -13,7 +13,7 @@ var ResultSchema = new Schema({
 	venueLng: Number,
 	venueAddressA: String,
 	venueAddressB: String,
-	venueRating: Number,
+	venueRating: String,
 	venueURL: String
 });
 

@@ -87,7 +87,7 @@
 	</script>
 
 	<!-- final result script -->
-	<script type='text/x-handlebars-template' id='result-template'>
+	<script type='text/x-handlebars-template' id='result-template-four'>
 		<div class='results'>
 			<div class='row'>
 				<h1 class='text-center large no-margin-top'><i>Based on ...</i></h1>
@@ -112,7 +112,50 @@
 							<h4 class='no-pad-top'>{{ venueCat }}</h4>
 						</div>
 						<div class='col-lg-2'>
-							<p class='rating right'> {{venueRating}}</p>
+							<p class='rating right'><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span></p>
+						</div>
+					</div>
+					<div class='row'>
+						<p><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span>&nbsp;&nbsp;{{ venueAddressA }}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ venueAddressB }}</p>
+						<a target='_blank' class='venue-website' href='https://maps.google.com/maps?q={{ venueAddressA }} {{ venueAddressB }}'><span class='glyphicon glyphicon-road' aria-hidden='true'></span>&nbsp;&nbsp;Get directions</a>
+						<a target='_blank' class='venue-website' href='{{ venueURL }}'><br><span class='glyphicon glyphicon-globe' aria-hidden='true'></span>&nbsp;&nbsp;Visit their website</a>
+					</div>
+					<div class='row result-btn-margin'>
+						<button type='button' class='btn btn-primary inline result-btn' id='new-search'>New Search</button>
+						<button type='submit' class='btn btn-primary inline result-btn' id='search-again'>Search Again</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<!-- three star -->
+	<script type='text/x-handlebars-template' id='result-template-three'>
+		<div class='results'>
+			<div class='row'>
+				<h1 class='text-center large no-margin-top'><i>Based on ...</i></h1>
+				<br>
+				<div class='col-lg-7'>
+					<img class='album-art right' src='{{ albumArt }}' />
+				</div>
+				<div class='col-lg-5 left no-pad-left'>
+					<h2 class='result-track-name' id='research-name'>{{ trackNameResult }} </h2>
+					<h4 class='result-artist-name' id='research-artist'> {{ artistNameResult }} </h4>
+				</div>
+			</div>
+			<hr>
+			<div class='row'>
+				<div class='col-lg-7'>
+					<div id='map'></div>
+				</div>
+				<div class='col-lg-5 left'>
+					<div class='row'>
+						<div class='col-lg-10 no-pad-left'>
+							<h2 class='inline left venue-name'>{{ venueName }}</h2>
+							<h4 class='no-pad-top'>{{ venueCat }}</h4>
+						</div>
+						<div class='col-lg-2'>
+							<p class='rating right'><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span></p>
 						</div>
 					</div>
 					<div class='row'>

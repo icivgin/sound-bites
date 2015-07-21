@@ -5,8 +5,11 @@ $(function() {
 var searchSource = $('#search-template').html();
 var searchTemplate = Handlebars.compile(searchSource);
 
-var finalSource = $('#result-template').html();
-var finalTemplate = Handlebars.compile(finalSource);
+var finalSourceFour = $('#result-template-four').html();
+var finalTemplateFour = Handlebars.compile(finalSourceFour);
+
+var finalSourceThree = $('#result-template-three').html();
+var finalTemplateThree = Handlebars.compile(finalSourceThree);
 
 var userTrue = $('#user-true').html();
 var userTrueTemplate = Handlebars.compile(userTrue);
@@ -15,7 +18,7 @@ var userFalse = $('#user-false').html();
 var userFalseTemplate = Handlebars.compile(userFalse);
 
 var toggle = true;
-var albumArtGlobal = '';
+var albumArtGlobal = 'http://gadgtmag.com/media/uploads/2012/10/album-art-missing.png';
 
 var apiKey = 'DGY3JGAZP1OFZR4RO';
 var clientID = 'J3QA1RADSXWM43QI0VTSC1EFFCFFZYKPZW2Z2PNVL5YEWU5T';
@@ -43,10 +46,12 @@ function setupView() {
 			$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
 			$('#search-view').html(searchTemplate({user: globalUserData.firstName.capitalize()}));
 			addEventHandlers();
+			$('#track-name').focus();
 		} else {
 			$('#navbar-view').html(userFalseTemplate());
 			$('#search-view').html(searchTemplate({user:'you'}));
 			addEventHandlers();
+			$('#track-name').focus();
 		}
 	});
 }
@@ -64,7 +69,7 @@ String.prototype.capitalize = function(){
 
 function getAlbumArt (trackName, artistName) {
 	$.get('https://api.spotify.com/v1/search?q=' + trackName + '%20' + artistName + '&type=track', function (data) {
-		albumArtGlobal = data.tracks.items[0].album.images[1].url;
+			albumArtGlobal = data.tracks.items[0].album.images[1].url;
 	});
 }
 
@@ -126,7 +131,12 @@ function getResult (trackName, artistName) {
 									}
 
 									$('#search-view').html('');
-									$('#result-view').html(finalTemplate(finalResult));
+
+									if(finalResult.venueRating > 7.5) {
+										$('#result-view').html(finalTemplateFour(finalResult));
+									} else if (finalResult.venueRating > 5) {
+										$('#result-view').html(finalTemplateThree(finalResult));
+									}
 
 									//on new search click
 									$('#new-search').on('click', function(event) {

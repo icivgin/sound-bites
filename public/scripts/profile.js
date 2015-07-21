@@ -27,7 +27,7 @@ $('#results-view').on('mouseover', '.result-div', function (event) {
 	event.preventDefault();
 	var that = $(this);
 	lastDiv.css('background-color', 'transparent');
-	that.css('background-color', 'rgba(0,0,0,.5)');
+	that.css('background-color', 'rgba(0,0,0,.25)');
 	lastDiv = that;
 
 	map.setView([that.attr('data-lat'), that.attr('data-lng')], 14);
@@ -62,7 +62,7 @@ $.get('/v1/me', function (data) {
 				if(i===0) {
 					var that = $('#results-view').find('.result-div');
 					lastDiv = that;
-					lastDiv.css('background-color', 'rgba(0,0,0,.5)');
+					lastDiv.css('background-color', 'rgba(0,0,0,.25)');
 					marker = new L.marker([that.attr('data-lat'), that.attr('data-lng')]).addTo(map);
 				}
 			}
