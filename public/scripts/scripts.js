@@ -87,7 +87,6 @@ function getResult (trackName, artistName) {
 						
 						//ajax request to api search (mapping)
 						$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
-							console.log(lat,lng);
 						// make call to 4square api
 							$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&limit=10&query=' + data, function (data) {
 								// checks that query returns 5 results
@@ -97,7 +96,7 @@ function getResult (trackName, artistName) {
 
 									var trackNameDeep = trackName.capitalize();
 									var artistNameDeep = artistName.capitalize();
-									var venueRatingDeep = (venue.rating.toFixed(1) || 0.0)
+									var venueRatingDeep = (venue.rating.toFixed(1) || 0.0);
 
 									var finalResult = {
 										trackNameResult: trackNameDeep,
@@ -114,13 +113,11 @@ function getResult (trackName, artistName) {
 									};
 
 									if(globalUserData) {
-										console.log(globalUserData);
 										$.ajax({
 											url: '/v1/users/' + globalUserData._id,
 											type: 'PUT',
 											data: finalResult,
 											success: function (data) {
-												console.log('heyyo');
 											},
 											error: function() {
 												alert('Error!');
@@ -162,7 +159,6 @@ function getResult (trackName, artistName) {
 									var marker = L.marker([finalResult.venueLat, finalResult.venueLng]).addTo(map);
 
 								} else {
-									console.log(data);
 									alert('Not enough data');
 								}
 							});

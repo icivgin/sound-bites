@@ -30,7 +30,6 @@ UserSchema.statics.createSecure = function (newUser, callback) {
 
 	bcrypt.genSalt(function (err, salt) {
 		bcrypt.hash(newUser.password, salt, function (err, hash) {
-			console.log(hash);
 
 			that.create({
 				firstName: newUser.firstName,
@@ -44,10 +43,7 @@ UserSchema.statics.createSecure = function (newUser, callback) {
 };
 
 UserSchema.statics.authenticate = function (userData, callback) {
-	console.log(userData);
 	this.findOne({ userName: userData.userName }, function (err, user) {
-		console.log(err);
-		console.log(user);
 		// throw error if can't find user
 	    if (!user) {
 	      callback(1, 'user not found');

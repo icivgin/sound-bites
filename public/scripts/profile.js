@@ -19,7 +19,6 @@ String.prototype.capitalize = function(){
 
 $.get('/v1/me', function (data) {
 	if(data) {
-		console.log(data);
 		globalUserData = data;
 		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
 
