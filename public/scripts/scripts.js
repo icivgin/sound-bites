@@ -84,11 +84,10 @@ function getResult (trackName, artistName) {
 			// query for primary and secondary genres
 				$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + artistName + '&format=json', function(data) {
 					// query with secondary genre for more specificity
-					if (toggle) {	
+					if (data.response.terms[0]) {	
 						genre1 = data.response.terms[0].name; 
 						genre2 = data.response.terms[1].name; 
 
-						if (data.response.terms) {
 						
 						//ajax request to api search (mapping)
 						$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
@@ -174,11 +173,7 @@ function getResult (trackName, artistName) {
 							});
 						});
 
-						//set toggle
-						toggle = true;
-
-						} else { alert('Uh oh. There was an error with your search. Try again!'); }
-					}
+						} else { alert('No data found. Please try another song!'); }
 				});
 
 		} else {
