@@ -96,7 +96,7 @@ app.post('/login', function (req, res) {
 			res.sendFile(__dirname + '/public/views/error.html');
 		} else {
 		req.login(user);
-		res.redirect('/');
+		res.redirect('/profile');
 		}
 	});
 });

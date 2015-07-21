@@ -23,13 +23,14 @@ String.prototype.capitalize = function(){
     });
 };
 
-$('#results-view').on('click', '.result-div', function (event) {
+$('#results-view').on('mouseover', '.result-div', function (event) {
 	event.preventDefault();
 	var that = $(this);
 	lastDiv.css('background-color', 'transparent');
 	that.css('background-color', 'rgba(0,0,0,.5)');
 	lastDiv = that;
 
+	map.setView([that.attr('data-lat'), that.attr('data-lng')], 14);
 	map.removeLayer(marker);
 	marker = new L.marker([that.attr('data-lat'), that.attr('data-lng')]).addTo(map);
 });
