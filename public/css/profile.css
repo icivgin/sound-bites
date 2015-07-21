@@ -45,11 +45,13 @@ body, html {
   height: 100%;
 }
 #footer {
-	margin-bottom: 12px;
+	margin-bottom: 19px;
 	padding: 0px 0px 0px 20px;
 }
 .result-div {
 	margin: 0px;
+	background-color: transparent;
+	padding-bottom: 15px;
 }
 
 @media (min-width: 768px){

@@ -11,6 +11,12 @@ var resultTemplate = Handlebars.compile(resultSource);
 
 var globalUserData;
 
+var marker;
+var markerDelete;
+
+var lastDiv;
+var thisDiv;
+
 String.prototype.capitalize = function(){
     return this.toLowerCase().replace( /\b\w/g, function (m) {
         return m.toUpperCase();
@@ -18,21 +24,20 @@ String.prototype.capitalize = function(){
 };
 
 $('#results-view').on('click', '.result-div', function (event) {
-	console.log($(this));
-	var allResults = $('#results-view').children()[1].children;
-	for (i=0; i<allResults.length; i++) {
-		console.log(allResults[i]);
-		allResults[i].style.background = '#4FC1E9';
-		var marker = L.marker([finalResult.venueLat, finalResult.venueLng]).addTo(map);
+	event.preventDefault();
+	var that = $(this);
+	lastDiv.css('background-color', 'transparent');
+	that.css('background-color', 'rgba(0,0,0,.5)');
+	lastDiv = that;
 
-	}
-	$(this).css('background-color', 'green');
+	map.removeLayer(marker);
+	marker = new L.marker([that.attr('data-lat'), that.attr('data-lng')]).addTo(map);
 });
 
 
 
 //set up map
-var map = L.map('map').setView([37.7833, -122.4167], 12);
+var map = L.map('map').setView([37.7833, -122.4167], 13);
 
 //add tile
 //dark - http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png
@@ -51,16 +56,19 @@ $.get('/v1/me', function (data) {
 		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
 
 		$.get('/v1/users/' + globalUserData._id, function (data) {
-
-			$('#history-view').append(resultTemplate());
-
-			// for(i=0; i<data.length; i++) {
-			// 	$('#history-view').append(resultTemplate(data[i]));
-			// }
+			for(i=0; i<data.length; i++) {
+				$('#results-view').append(resultTemplate(data[i]));
+				if(i===0) {
+					var that = $('#results-view').find('.result-div');
+					lastDiv = that;
+					lastDiv.css('background-color', 'rgba(0,0,0,.5)');
+					marker = new L.marker([that.attr('data-lat'), that.attr('data-lng')]).addTo(map);
+				}
+			}
 		});
 
 	} else {
-		$('#navbar-view').html(userFalseTemplate())
+		$('#navbar-view').html(userFalseTemplate());
 	}
 });
 

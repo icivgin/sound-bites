@@ -28,13 +28,7 @@
 		    <div class='navbar-header left'>
 		    	<a href='/'><img class='brand-img' src='https://i.imgur.com/YIHwwKr.png' /></a>
 		    </div>
-		    <div class="navbar-header right navbar-pad" id='navbar-view'>
-		    	<ul class="nav navbar-nav">
-		    	  <a href="/">Your Account</a>
-		    	  <a href="/">Search</a>
-		    	  <a href="/logout">Logout</a>
-		    	</ul>
-		    </div><!-- /.navbar-collapse -->
+		    <div class="navbar-header right navbar-pad" id='navbar-view'></div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		<div class='row'>
@@ -44,26 +38,7 @@
 			<div class='col-lg-3' id='right'>
 				<h3 class='left'>Recent Searches</h3>
 				<hr>
-				<div id='results-view'>
-					<div class='row left result-div'>
-						<div class='col-lg-3'>
-							<h3>Based on...</h3>
-							<p>83 - John Mayer</p>
-						</div>
-						<div class='col-lg-9'>
-							<h3>Liho Liho Yacht Club</h3>
-							<a href='#'>Get directions</a><br>
-							<a href='#'>Visit Website</a>
-						</div>
-					</div>
-					<div class='row left result-div'>
-						<h3>Based on...</h3>
-						<p>22 - Taylor Swift</p>
-						<h3>Some Froyo</h3>
-						<a href='#'>Get directions</a>
-						<a href='#'>Visit Website</a>
-					</div>
-				</div>
+				<div id='results-view'></div>
 			</div>
 		</div>
 		<!-- input template -->
@@ -80,10 +55,26 @@
 		</div>
 	</div>
 
+	<!-- result-div template -->
+	<script type ="text/x-handlebars-template" id='result-template'>
+		<div class='row left result-div' data-lat='{{venueLat}}' data-lng='{{venueLng}}'>
+			<div class='col-lg-4'>
+				<h3>{{trackNameResult}}</h3>
+				<p>{{artistNameResult}}</p>
+			</div>
+			<div class='col-lg-8'>
+				<h3>{{venueName}}</h3>
+				<p class='small'>{{venueCat}}</p>
+				<a target='_blank' class='venue-website' href='https://maps.google.com/maps?q={{ venueAddressA }} {{ venueAddressB }}'><span class='glyphicon glyphicon-road' aria-hidden='true'></span>&nbsp;&nbsp;Get directions</a>
+				<a target='_blank' class='venue-website' href='{{ venueURL }}'><br><span class='glyphicon glyphicon-globe' aria-hidden='true'></span>&nbsp;&nbsp;Visit their website</a>
+			</div>
+		</div>
+	</script>
+
 	<!-- navbar user logged in -->
 	<script type ="text/x-handlebars-template" id='user-true'>
 		<ul class="nav navbar-nav">
-		  <a href="/">Search</a>
+		  <a href="/">New Search</a>
 		  <a href="/logout">Logout</a>
 		</ul>
 	</script>
@@ -94,11 +85,6 @@
 		  <a href="/signup">Sign Up</a>
 		  <a href="/login">Login</a>
 		</ul>
-	</script>
-
-	<script type='text/x-handlebars-template' id='result-template'>
-		<h1 class='center'>Page Under Construction... check back soon.</h1>
-		<h3 class='center'>Do not worry. Your searches are still being saved :)</h3>
 	</script>
 
 	<!-- jquery -->
