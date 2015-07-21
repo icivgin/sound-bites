@@ -3,12 +3,26 @@ var mongoose = require('mongoose'),
 	bcrypt = require('bcrypt'),
   	salt = bcrypt.genSaltSync(10);
 
+var ResultSchema = new Schema({
+	trackNameResult: String,
+	artistNameResult: String,
+	albumArt: String,
+	venueName: String,
+	venueCat: String,
+	venueLat: Number,
+	venueLng: Number,
+	venueAddressA: String,
+	venueAddressB: String,
+	venueRating: Number,
+	venueURL: String
+});
+
 var UserSchema = new Schema ({
 	firstName: String,
 	userName: String,
 	email: { type: String, unique: true }, 
 	passwordDigest: String,
-
+	myResults: [ResultSchema]
 });
 
 UserSchema.statics.createSecure = function (newUser, callback) {
@@ -52,5 +66,7 @@ UserSchema.methods.checkPassword = function(password) {
 }
 
 var User = mongoose.model('User', UserSchema);
+var Result = mongoose.model('Result', ResultSchema);
 
-module.exports = User;
+module.exports.User = User;
+module.exports.Result = Result;

@@ -24,8 +24,11 @@ var clientSecret = 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP';
 var trackName = '';
 var artistName = '';
 
+var globalUserData;
+
 $.get('/api/me', function (data) {
 	if(data) {
+		globalUserData = data;
 		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
 	} else {
 		$('#navbar-view').html(userFalseTemplate())
@@ -468,7 +471,8 @@ function mapGenre (placeholder1, placeholder2) {
 
 function getAlbumArt (trackName, artistName) {
 	$.get('https://api.spotify.com/v1/search?q=' + trackName + '%20' + artistName + '&type=track', function (data) {
-		albumArtGlobal = data.tracks.items[0].album.images[1].url;	
+		console.log(data);
+		albumArtGlobal = data.tracks.items[0].album.images[1].url;
 	});
 }
 
@@ -509,6 +513,7 @@ function getResult (trackName, artistName) {
 							if(data.response.groups[0].items.length > 9) {
 								var ranVenue = Math.floor(Math.random() * 10);
 								var venue = data.response.groups[0].items[ranVenue].venue;
+								console.log(venue);
 								var trackNameDeep = trackName.capitalize();
 								var artistNameDeep = artistName.capitalize();
 
@@ -522,8 +527,26 @@ function getResult (trackName, artistName) {
 									venueLng: venue.location.lng,
 									venueAddressA: venue.location.formattedAddress[0],
 									venueAddressB: venue.location.formattedAddress[1],
-									venueRating: venue.rating
+									venueRating: venue.rating,
+									venueURL: venue.url
 								};
+
+								if(globalUserData) {
+									console.log(globalUserData);
+									$.ajax({
+										url: '/api/users/' + globalUserData._id,
+										type: 'PUT',
+										data: finalResult,
+										success: function (data) {
+											console.log('heyyo');
+										},
+										error: function() {
+											alert('Error!');
+										}
+									});
+								}
+
+								console.log(finalResult);
 
 								$('#search-view').html('');
 								$('#result-view').html(finalTemplate(finalResult));

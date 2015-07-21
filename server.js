@@ -5,7 +5,7 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	session = require('express-session');
 
-var User = require('./models/user');
+var db = require('./models/models');
 
 mongoose.connect('mongodb://localhost/sound-bites');
 
@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(session({
 	saveUninitialized: true,
 	resave: true,
-	secret: 'askldfjalwkefhjasdkjch',
+	secret: 'ask23788foawe7fy98hfiuaujiuhweflaushdo87iwhf982398fhwaep',
 	cookie: { maxAge: 60000 }
 }));
 
@@ -33,7 +33,7 @@ app.use('/', function (req, res, next) {
 
   // finds user currently logged in based on `session.userId`
   req.currentUser = function (callback) {
-    User.findOne({_id: req.session.userId}, function (err, user) {
+    db.User.findOne({_id: req.session.userId}, function (err, user) {
       req.user = user;
       callback(null, user);
     });
@@ -57,15 +57,25 @@ app.get('/', function (req, res, next) {
 	res.sendFile(__dirname + '/public/views/index.html');
 });
 
+app.get('/profile', function (req, res, next) {
+	req.currentUser(function (err, user) {
+		if(user) {
+			res.sendFile(__dirname + '/public/views/profile.html');
+		} else {
+			res.redirect('/login');
+		}
+	})
+});
+
+
 app.get('/signup', function (req, res, next) {
 	res.sendFile(__dirname + '/public/views/signup.html')
 });
 
 app.post('/signup', function (req, res) {
 	var newUser = req.body;
-	console.log(newUser);
 
-	User.createSecure(newUser, function (err, user) {
+	db.User.createSecure(newUser, function (err, user) {
 		req.login(user);
 		res.redirect('/');
 	});
@@ -78,12 +88,10 @@ app.get('/login', function (req, res, next) {
 app.post('/login', function (req, res) {
 	var userData = req.body;
 
-	User.authenticate(userData, function (err, user) {
+	db.User.authenticate(userData, function (err, user) {
 		if(err === 1) {
-			console.log(user);
 			res.sendFile(__dirname + '/public/views/error.html');
 		} else if (err === 2) {
-			console.log(user);
 			res.sendFile(__dirname + '/public/views/error.html');
 		} else {
 		req.login(user);
@@ -100,6 +108,39 @@ app.get('/api/me', function(req, res) {
 		} else {
 			res.send(null);
 		}
+	});
+});
+
+app.get('/api/users/:userId', function (req, res) {
+	var targetId = req.params.userId;
+
+	db.User.findOne({_id: targetId}, function (err, foundUser) {
+		res.send(foundUser.myResults);
+	});
+});
+
+app.put('/api/users/:userId', function (req, res) {
+	var targetId = req.params.userId;
+
+	db.User.findOne({_id: targetId}, function (err, foundUser) {
+		console.log(foundUser.myResults);
+		foundUser.myResults.push({
+			trackNameResult: req.body.trackNameResult,
+			artistNameResult: req.body.artistNameResult,
+			albumArt: req.body.albumArt,
+			venueName: req.body.venueName,
+			venueCat: req.body.venueCat,
+			venueLat: req.body.venueLat,
+			venueLng: req.body.venueLng,
+			venueAddressA: req.body.venueAddressA,
+			venueAddressB: req.body.venueAddressB,
+			venueRating: req.body.venueRating,
+			venueURL: req.body.venueURL
+		});
+
+		foundUser.save(function (err, savedUser) {
+			res.json(savedUser);
+		});
 	});
 });
 

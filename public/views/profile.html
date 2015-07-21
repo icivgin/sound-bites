@@ -27,7 +27,7 @@
 		</nav>
 
 		<!-- input template -->
-		<div id='search-view'></div>
+		<div id='history-view'></div>
 		
 		<!-- display div -->
 		<div class='row center'>
@@ -44,7 +44,7 @@
 	<script type ="text/x-handlebars-template" id='user-true'>
 		<ul class="nav navbar-nav">
 		  <p class='inline'><i>Hi, {{ user }} </i></p>
-		  <a href="/profile">Me</a>
+		  <a href="/">Search</a>
 		  <a href="/logout">Logout</a>
 		</ul>
 	</script>
@@ -57,33 +57,6 @@
 		</ul>
 	</script>
 
-	<script type="text/x-handlebars-template" id='search-template'>
-		<div class='row center'>
-			<div class='col-md-4 col-md-offset-4'>
-				<h1 class='large top'>Welcome to SoundBites!{{ test }}</h1>
-				<h2 class='helvetica'>Enter the last song you listened to and find your next new spot.</h2><hr class='top-hr'><br>
-				<form id='submit-track'>
-					<input type='text' class='input-field' id='track-name' placeholder="Song's name here ..." required autofocus></input><br>
-
-					<input type='text' class='input-field' id='artist-name' placeholder="Artist's name here ..." required></input><br>
-
-					<button type='submit' class='btn btn-primary btn-submit'>Submit</button><br>
-				</form>
-			</div>
-		</div>
-	</script>
-
-	<!-- result script -->
-	<script type='text/x-handlebars-template' id='stupid-template'>
-		<h1> {{ genreOne }}, {{ genreTwo }}</h1>
-	</script>
-
-	<!-- mapping function -->
-	<script type='text/x-handlebars-template' id='food-template'>
-		<h1> {{ food }} </h1>
-	</script>
-
-	<!-- final result script -->
 	<script type='text/x-handlebars-template' id='result-template'>
 		<div class='results'>
 			<div class='row'>
@@ -128,7 +101,6 @@
 		</div>
 	</script>
 
-
 	<!-- jquery -->
 	<script type='text/javascript' src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
 
@@ -145,6 +117,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 
 	<!-- custom script -->
-	<script type='text/javascript' src='../scripts/scripts.js'></script>
+	<script type='text/javascript' src='../scripts/profile.js'></script>
 </body>
 </html>
