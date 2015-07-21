@@ -24,13 +24,12 @@ var clientSecret = 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP';
 var trackName = '';
 var artistName = '';
 
-var lat;
-var lng;
+var lat = 37.7833;
+var lng = -122.4167;
 
 function saveGeo(position) {
 	lat = position.coords.latitude;
 	lng = position.coords.longitude;
-	addEventHandlers();
 }
 
 var geo = navigator.geolocation.getCurrentPosition(saveGeo);
@@ -43,11 +42,11 @@ function setupView() {
 			globalUserData = data;
 			$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
 			$('#search-view').html(searchTemplate({user: globalUserData.firstName.capitalize()}));
-			// addEventHandlers();
+			addEventHandlers();
 		} else {
 			$('#navbar-view').html(userFalseTemplate());
 			$('#search-view').html(searchTemplate({user:'you'}));
-			// addEventHandlers();
+			addEventHandlers();
 		}
 	});
 }
@@ -88,8 +87,9 @@ function getResult (trackName, artistName) {
 						
 						//ajax request to api search (mapping)
 						$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
+							console.log(lat,lng);
 						// make call to 4square api
-							$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + (lat || 37.7833) + ',' + (lng || 122.4167) + '&llAcc=10000.0&limit=10&query=' + data, function (data) {
+							$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&limit=10&query=' + data, function (data) {
 								// checks that query returns 5 results
 								if(data.response.groups[0].items.length > 1) {
 									var ranVenue = Math.floor(Math.random() * data.response.groups[0].items.length);
@@ -97,6 +97,7 @@ function getResult (trackName, artistName) {
 
 									var trackNameDeep = trackName.capitalize();
 									var artistNameDeep = artistName.capitalize();
+									var venueRatingDeep = (venue.rating.toFixed(1) || 0.0)
 
 									var finalResult = {
 										trackNameResult: trackNameDeep,
@@ -108,7 +109,7 @@ function getResult (trackName, artistName) {
 										venueLng: venue.location.lng,
 										venueAddressA: venue.location.formattedAddress[0],
 										venueAddressB: venue.location.formattedAddress[1],
-										venueRating: venue.rating.toFixed(1),
+										venueRating: venueRatingDeep,
 										venueURL: venue.url
 									};
 
