@@ -112,6 +112,31 @@ app.get('/v1/me', function(req, res) {
 	});
 });
 
+//DATA VALIDATION
+app.get('/v1/users/find/userName/:userName', function (req, res) {
+	var targetUserName = req.params.userName;
+	
+	db.User.findOne({userName: targetUserName}, function (err, foundUser) {
+		if(foundUser) {
+			res.json(foundUser.userName)
+		} else {
+			res.json('');
+		}
+	});
+});
+app.get('/v1/users/find/email/:email', function (req, res) {
+	var targetEmail = req.params.email;
+	
+	db.User.findOne({email: targetEmail}, function (err, foundUser) {
+		if(foundUser) {
+			res.json(foundUser.email)
+		} else {
+			res.json('');
+		}
+	});
+});
+
+
 app.get('/v1/users/:userId', function (req, res) {
 	var targetId = req.params.userId;
 
