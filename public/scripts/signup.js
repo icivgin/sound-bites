@@ -3,7 +3,7 @@ $(function() {
 function check() {
 	var atInclude = $('#new-user-email').val().indexOf('@');
 	console.log(atInclude);
-	if ($('#new-user-email').val().indexOf('@') === -1) {
+	if ($('#new-user-email').val().indexOf('@') === -1 && $('#new-user-email').val()) {
 		return false;
 	} else {
 		return true;
@@ -26,7 +26,7 @@ $('#new-user-userName').on('focusout', function (event) {
 $('#new-user-email').on('focusout', function (event) {
 	if (!check()) {
 			alert('Not a valid email.')
-			$('#new-user-email').focus();
+			$('#new-user-email').val('').focus();
 	} else {
 		$.get('/v1/users/find/email/' + $('#new-user-email').val(), function (data) {
 			if (data === $('#new-user-email').val()) {
