@@ -89,8 +89,8 @@ function getResult (trackName, artistName) {
 						$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 						// make call to 4square api
 							$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&limit=10&query=' + data, function (data) {
-								// checks that query returns 5 results
-								if(data.response.groups[0].items.length > 1) {
+								// checks that query returns results
+								if(data.response.groups[0].items.length > 0) {
 									var ranVenue = Math.floor(Math.random() * data.response.groups[0].items.length);
 									var venue = data.response.groups[0].items[ranVenue].venue;
 
@@ -159,7 +159,7 @@ function getResult (trackName, artistName) {
 									var marker = L.marker([finalResult.venueLat, finalResult.venueLng]).addTo(map);
 
 								} else {
-									alert('Not enough data');
+									alert('No data found. Please try again!');
 								}
 							});
 						});
@@ -167,12 +167,12 @@ function getResult (trackName, artistName) {
 						//set toggle
 						toggle = true;
 
-						} else { alert('Seems like that song doesn\'t exist ... Try a different search!'); }
+						} else { alert('Uh oh. There was an error with your search. Try again!'); }
 					}
 				});
 
 		} else {
-			alert('Seems like that song doesn\'t exist ... Try a different search!');
+			alert('Are you sure that\'s the correct spelling? We couldn\'t find a match');
 		}
 	});
 }
