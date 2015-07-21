@@ -48,6 +48,9 @@ body, html {
 	margin-bottom: 12px;
 	padding: 0px 0px 0px 20px;
 }
+.result-div {
+	margin: 0px;
+}
 
 @media (min-width: 768px){
   #left {
@@ -70,7 +73,7 @@ body, html {
     width: 25%;
     margin-top: 90px;
     margin-bottom: 50px;
-    padding-right: 30px;
+    padding-right: 15px;
 
   }
 }
