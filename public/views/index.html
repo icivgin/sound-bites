@@ -46,7 +46,6 @@
 	<!-- navbar user logged in -->
 	<script type ="text/x-handlebars-template" id='user-true'>
 		<ul class="nav navbar-nav">
-		  <p class='inline'><i>Hi, {{ user }} </i></p>
 		  <a href="/profile">Me</a>
 		  <a href="/logout">Logout</a>
 		</ul>
@@ -67,7 +66,7 @@
 				<h1 class='large top'>Hey, {{user}}!</h1>
 				<h2 class='helvetica'>Enter the last song you listened to and find your next new spot.</h2><hr class='top-hr'><br>
 				<form id='submit-track'>
-					<input type='text' class='input-field' id='track-name' placeholder="Song's name here ..." required autofocus></input><br>
+					<input type='text' class='input-field' id='track-name' placeholder="Song's name here" required autofocus></input><br>
 
 					<input type='text' class='input-field' id='artist-name' placeholder="Artist's name here ..." required></input><br>
 
