@@ -58,7 +58,8 @@
 
 body { 
 	/*http://i.imgur.com/z7MX1wX.jpg*/
-  background: url(https://i.imgur.com/g8yFXvR.jpg) no-repeat center center fixed; 
+	/*https://i.imgur.com/g8yFXvR.jpg*/
+  background: url(http://i.imgur.com/ka9DPDW.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
