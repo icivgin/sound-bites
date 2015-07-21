@@ -17,13 +17,13 @@ String.prototype.capitalize = function(){
     });
 };
 
-$.get('/api/me', function (data) {
+$.get('/v1/me', function (data) {
 	if(data) {
 		console.log(data);
 		globalUserData = data;
 		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
 
-		$.get('/api/users/' + globalUserData._id, function (data) {
+		$.get('/v1/users/' + globalUserData._id, function (data) {
 
 			$('#history-view').append(resultTemplate());
 

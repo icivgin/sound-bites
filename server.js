@@ -6,6 +6,7 @@ var express = require('express'),
 	session = require('express-session');
 
 var db = require('./models/models');
+var Map = require('./models/map');
 
 mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/sound-bites');
 
@@ -101,7 +102,7 @@ app.post('/login', function (req, res) {
 });
 
 //API
-app.get('/api/me', function(req, res) {
+app.get('/v1/me', function(req, res) {
 	req.currentUser(function (err, user) {
 		if (user) {
 			res.send(user);
@@ -111,7 +112,7 @@ app.get('/api/me', function(req, res) {
 	});
 });
 
-app.get('/api/users/:userId', function (req, res) {
+app.get('/v1/users/:userId', function (req, res) {
 	var targetId = req.params.userId;
 
 	db.User.findOne({_id: targetId}, function (err, foundUser) {
@@ -119,7 +120,7 @@ app.get('/api/users/:userId', function (req, res) {
 	});
 });
 
-app.put('/api/users/:userId', function (req, res) {
+app.put('/v1/users/:userId', function (req, res) {
 	var targetId = req.params.userId;
 
 	db.User.findOne({_id: targetId}, function (err, foundUser) {
@@ -142,6 +143,13 @@ app.put('/api/users/:userId', function (req, res) {
 			res.json(savedUser);
 		});
 	});
+});
+
+app.get('/v1/search/:inputA/:inputB', function (req, res) {
+	Map.map(req.params.inputA, req.params.inputB, function (query) {
+		res.send(query);
+	});
+	
 });
 
 app.listen(process.env.PORT || 3000);
