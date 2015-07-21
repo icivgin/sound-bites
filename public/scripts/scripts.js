@@ -96,7 +96,7 @@ function getResult (trackName, artistName) {
 
 									var trackNameDeep = trackName.capitalize();
 									var artistNameDeep = artistName.capitalize();
-									var venueRatingDeep = (venue.rating.toFixed(1) || 0.0);
+									var venueRatingDeep = (venue.rating || 0.0);
 
 									var finalResult = {
 										trackNameResult: trackNameDeep,
@@ -108,7 +108,7 @@ function getResult (trackName, artistName) {
 										venueLng: venue.location.lng,
 										venueAddressA: venue.location.formattedAddress[0],
 										venueAddressB: venue.location.formattedAddress[1],
-										venueRating: venueRatingDeep,
+										venueRating: venueRatingDeep.toFixed(1),
 										venueURL: venue.url
 									};
 
