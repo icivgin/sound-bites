@@ -7,7 +7,7 @@ var express = require('express'),
 
 var db = require('./models/models');
 
-mongoose.connect('mongodb://localhost/sound-bites');
+mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/sound-bites');
 
 // tell app to use bodyParser middleware
 app.use(bodyParser.urlencoded({extended: true}));
