@@ -4,7 +4,6 @@ var cheerio = require('cheerio');
 
 describe('localhost:3000', function() {
 
-	// GET: api/posts/:id
 	it('/v1/me should return null', function(done) {
 		request.get('http://localhost:3000/v1/me', function(err, res, body) {
 			expect(res.body).to.equal('');

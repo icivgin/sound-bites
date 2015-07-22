@@ -3,10 +3,10 @@ $(function() {
 //popover
 $('[data-toggle="popover"]').popover()
 
+//checks if valid email address (needs '@' and '.')
 function check() {
 	var atInclude = $('#new-user-email').val().indexOf('@');
-	console.log(atInclude);
-	if ($('#new-user-email').val().indexOf('@') === -1 && $('#new-user-email').val()) {
+	if (($('#new-user-email').val().indexOf('@') === -1 || $('#new-user-email').val().indexOf('.') === -1) && $('#new-user-email').val()) {
 		return false;
 	} else {
 		return true;
@@ -14,13 +14,13 @@ function check() {
 }
 
 //data validation
-
 //checks for unique username
 $('#new-user-userName').on('focusout', function (event) {
-	$.get('/v1/users/find/userName/' + $('#new-user-userName').val(), function (data) {
-		if(data === $('#new-user-userName').val()) {
+	var attempt = $('#new-user-userName').val();
+	$.get('/v1/users/find/userName/' + attempt, function (data) {
+		if(data === attempt) {
 			alert('Username already taken.');
-			$('#new-user-userName').val('').focus();
+			$('#new-user-userName').focus();
 		}
 	});
 });

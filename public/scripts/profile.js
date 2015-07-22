@@ -20,12 +20,14 @@ var thisDiv;
 //popover
 $('[data-toggle="popover"]').popover()
 
+//capitalize first letter in string
 String.prototype.capitalize = function(){
     return this.toLowerCase().replace( /\b\w/g, function (m) {
         return m.toUpperCase();
     });
 };
 
+// mouseover functionality
 $('#results-view').on('mouseover', '.result-div', function (event) {
 	event.preventDefault();
 	var that = $(this);
@@ -39,14 +41,9 @@ $('#results-view').on('mouseover', '.result-div', function (event) {
 	marker = new L.marker([that.attr('data-lat'), that.attr('data-lng')]).addTo(map);
 });
 
-
-
 //set up map
 var map = L.map('map').setView([37.769086, -122.445374], 13);
 
-//add tile
-//dark - http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png
-//light - http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: '',
     maxZoom: 20,
@@ -71,7 +68,6 @@ $.get('/v1/me', function (data) {
 				}
 			}
 		});
-
 	} else {
 		$('#navbar-view').html(userFalseTemplate());
 	}

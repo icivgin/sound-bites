@@ -1,7 +1,5 @@
 $(function() {
 
-//put this all in a controller
-
 var searchSource = $('#search-template').html();
 var searchTemplate = Handlebars.compile(searchSource);
 
@@ -30,9 +28,12 @@ var artistName = '';
 var lat = 37.7833;
 var lng = -122.4167;
 
-//popover
+var globalUserData;
+
+//popover functionality
 $('[data-toggle="popover"]').popover()
 
+//retrieving current location
 function saveGeo(position) {
 	lat = position.coords.latitude;
 	lng = position.coords.longitude;
@@ -40,8 +41,7 @@ function saveGeo(position) {
 
 var geo = navigator.geolocation.getCurrentPosition(saveGeo);
 
-var globalUserData;
-
+//sets up the view
 function setupView() {
 	$.get('/v1/me', function (data) {
 		if(data) {
@@ -59,10 +59,8 @@ function setupView() {
 	});
 }
 
+//run setupView on page load
 setupView();
-
-//load search on page load
-// $('#search-view').html(searchTemplate({user:'you'}));
 
 String.prototype.capitalize = function(){
     return this.toLowerCase().replace( /\b\w/g, function (m) {
@@ -82,103 +80,106 @@ function getResult (trackName, artistName) {
 	$.get('https://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + artistName + '&title=' + trackName, function (data) {
 		if (data.response.songs.length !== 0) {
 
+			// retrieve album art from spotify
 			getAlbumArt(trackName, artistName);
 
 			// query for primary and secondary genres
-				$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + artistName + '&format=json', function(data) {
-					// query with secondary genre for more specificity
-					if (data.response.terms[0]) {	
-						genre1 = data.response.terms[0].name; 
-						genre2 = data.response.terms[1].name; 
-						console.log(genre1, genre2);
+			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + artistName + '&format=json', function(data) {
+				
+				// query with secondary genre for more specificity
+				if (data.response.terms[0]) {	
+					genre1 = data.response.terms[0].name; 
+					genre2 = data.response.terms[1].name; 
 
+					// Show genre toggle (testing)
+					// console.log(genre1, genre2);
+					
+					//ajax request to api search (mapping)
+					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 						
-						//ajax request to api search (mapping)
-						$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 						// make call to 4square api
-							$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&limit=10&query=' + data, function (data) {
-								// checks that query returns results
-								if(data.response.groups[0].items.length > 0) {
-									var ranVenue = Math.floor(Math.random() * data.response.groups[0].items.length);
-									var venue = data.response.groups[0].items[ranVenue].venue;
+						$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&limit=10&query=' + data, function (data) {
+							
+							// checks that query returns results
+							if(data.response.groups[0].items.length > 0) {
 
-									var trackNameDeep = trackName.capitalize();
-									var artistNameDeep = artistName.capitalize();
-									var venueRatingDeep = (venue.rating || 0.0);
+								//gets random number from result array length and finds venue
+								var ranVenue = Math.floor(Math.random() * data.response.groups[0].items.length);
+								var venue = data.response.groups[0].items[ranVenue].venue;
 
-									var finalResult = {
-										trackNameResult: trackNameDeep,
-										artistNameResult: artistNameDeep,
-										albumArt: albumArtGlobal,
-										venueName: venue.name,
-										venueCat: venue.categories[0].name,
-										venueLat: venue.location.lat,
-										venueLng: venue.location.lng,
-										venueAddressA: venue.location.formattedAddress[0],
-										venueAddressB: venue.location.formattedAddress[1],
-										venueRating: venueRatingDeep.toFixed(1),
-										venueURL: venue.url
-									};
+								var venueRatingDeep = (venue.rating || 0.0);
 
-									if(globalUserData) {
-										$.ajax({
-											url: '/v1/users/' + globalUserData._id,
-											type: 'PUT',
-											data: finalResult,
-											success: function (data) {
-											},
-											error: function() {
-												alert('Error!');
-											}
-										});
-									}
+								var finalResult = {
+									trackNameResult: trackName.capitalize(),
+									artistNameResult: artistName.capitalize(),
+									albumArt: albumArtGlobal,
+									venueName: venue.name,
+									venueCat: venue.categories[0].name,
+									venueLat: venue.location.lat,
+									venueLng: venue.location.lng,
+									venueAddressA: venue.location.formattedAddress[0],
+									venueAddressB: venue.location.formattedAddress[1],
+									venueRating: venueRatingDeep.toFixed(1),
+									venueURL: venue.url
+								};
 
-									$('#search-view').html('');
-
-									if(finalResult.venueRating > 7.5) {
-										$('#result-view').html(finalTemplateFour(finalResult));
-									} else if (finalResult.venueRating > 5) {
-										$('#result-view').html(finalTemplateThree(finalResult));
-									}
-
-									//on new search click
-									$('#new-search').on('click', function(event) {
-										event.preventDefault();
-										
-										$('#result-view').html('');
-										setupView();
+								if(globalUserData) {
+									$.ajax({
+										url: '/v1/users/' + globalUserData._id,
+										type: 'PUT',
+										data: finalResult,
+										success: function (data) {},
+										error: function() {
+											alert('Error!');
+										}
 									});
-
-									//on search again click
-									$('#search-again').on('click', function(event) {
-										event.preventDefault();
-										getResult(trackName, artistName);
-									})
-
-									//set up map
-									var map = L.map('map').setView([finalResult.venueLat, finalResult.venueLng], 12);
-
-									//add tile
-									//dark - http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png
-									//light - http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png
-									L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-									    attribution: '',
-									    maxZoom: 20,
-									    id: 'icivgin.b6d584ee',
-									    accessToken: 'pk.eyJ1IjoiaWNpdmdpbiIsImEiOiI3MmVjZmMyNmM2ZWYxMGQ2MDAzMWU5MDhiZGI5ZmJkNSJ9.uOGm9rJve_i8WdJFKT3ljg'
-									}).addTo(map);
-
-									//add marker
-									var marker = L.marker([finalResult.venueLat, finalResult.venueLng]).addTo(map);
-
-								} else {
-									alert('No data found. Please try again!');
 								}
-							});
-						});
 
-						} else { alert('No data found. Please try another song!'); }
-				});
+								// hides search template
+								$('#search-view').html('');
+
+								// loads correct star result template
+								if(finalResult.venueRating > 7.5) {
+									$('#result-view').html(finalTemplateFour(finalResult));
+								} else if (finalResult.venueRating > 5) {
+									$('#result-view').html(finalTemplateThree(finalResult));
+								}
+
+								//Add event handlers
+								//on new search click
+								$('#new-search').on('click', function(event) {
+									event.preventDefault();
+									$('#result-view').html('');
+									setupView();
+								});
+
+								//on search again click
+								$('#search-again').on('click', function(event) {
+									event.preventDefault();
+									getResult(trackName, artistName);
+								});
+
+								// set up map
+								var map = L.map('map').setView([finalResult.venueLat, finalResult.venueLng], 12);
+
+								L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+								    attribution: '',
+								    maxZoom: 20,
+								    id: 'icivgin.b6d584ee',
+								    accessToken: 'pk.eyJ1IjoiaWNpdmdpbiIsImEiOiI3MmVjZmMyNmM2ZWYxMGQ2MDAzMWU5MDhiZGI5ZmJkNSJ9.uOGm9rJve_i8WdJFKT3ljg'
+								}).addTo(map);
+
+								// add marker
+								var marker = L.marker([finalResult.venueLat, finalResult.venueLng]).addTo(map);
+
+							} else {
+								alert('No data found. Please try again!');
+							}
+						});
+					});
+
+				} else { alert('No data found. Please try another song!'); }
+			});
 
 		} else {
 			alert('Are you sure that\'s the correct spelling? We couldn\'t find a match');

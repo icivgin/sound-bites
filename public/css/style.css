@@ -1,3 +1,48 @@
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+#header {
+	padding:6px;
+}
+#content {
+	padding-bottom:30px; /* Height of the footer element */
+}
+#footer {
+	width:100%;
+	height:30px;
+	position:absolute;
+	bottom:5px;
+	left:0;
+	padding-left: 41px;
+}
+body { 
+	padding-right: 20px;
+	background-color: #2A3552;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;
+	color: white;
+}
+
+/* Default Buttons */
+.btn-primary {
+	background-color: #1498B8;
+	border-color: #1498B8;
+	font-size: 18px;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+	background-color: #1390AD;
+	border-color: #1390AD;
+}
+
+/* Alignment CSS */
 .center {
 	float: center;
 	text-align: center;
@@ -5,135 +50,48 @@
 .left {
 	text-align: left;
 }
-.large {
-	font-size:56px;
-}
 .right {
 	float: right;
-}
-.input-field {
-	padding-left: 10px;
-	margin-bottom: 10px;
-	height: 50px;
-	width: 75%;
-	color: white;
-	font-size: 20px;
-}
-.top-hr {
-	margin-bottom: 7px;
-}
-.popover {
-	color: black;
-	text-shadow: none;
-}
-.btn-submit {
-	width: 75%;
-}
-
-/*final-result template*/
-.album-art {
-	width: 200px;
-	border-radius: 1px;
-}
-.map {
-	width: 400px;
-}
-.inline {
-	display: inline;
-}
-.btn-test-a {
-	width: 35%;
-	margin-left: 10%;
-}
-.btn-test-b {
-	width: 35%;
-	margin-left: 15%;
-}
-
-#map { 
-	height: 400px;
-	border-radius: 2px;
-}
-
-.result-track-name {
-	margin-top: 5px;
-}
-.result-artist-name {
-	margin-top: 5px;
-}
-
-body { 
-	margin-right: 20px;
-	background-color: #2A3552;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-	font-weight: 300;
-	color: white;
-}
-::selection {
-	  background: grey; /* WebKit/Blink Browsers */
-}
-::-moz-selection {
-	  background: grey; /* Gecko Browsers */
-}
-.back-fade {
-	border-radius: 0px;
-	background-color: rgba(130, 130, 130, .25);
-}
-
-.results {
-	padding: 0px 20px 20px 20px;
-	border-radius: 10px;
-}
-.top {
-	margin-top:50px;
-}
-.btn-search {
-	font-size: 18px;
-}
-
-
-input,
-textarea,
-select {
-    border: 1px solid rgba(122, 122, 122, .5);
-    color: white;
-    background: rgba(110, 110, 110, .5);
-    -webkit-appearance: none;
-  
-}
-input:focus,
-textarea:focus,
-select:focus { outline-color: rgba(180, 180, 180, .5) }
-textarea {
-    height: 55px;
-    background: grey;
-}
-
-::-webkit-input-placeholder {
-   color: lightgrey;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: lightgrey;  
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: lightgrey;  
-}
-
-:-ms-input-placeholder {  
-   color: lightgrey;  
-}
-
-.rating {
-	color: #2EBBDB;
-	padding-top: 8px;
 }
 .no-pad-left {
 	padding-left:0px;
 }
 .no-pad-top {
 	padding-top:0px;
+}
+.no-margin-top {
+	margin-top:0px;
+}
+
+/* Sizing CSS */
+.small {
+	font-size: 14px;
+}
+.large {
+	font-size:56px;
+}
+
+/* Other General CSS */
+.inline {
+	display: inline;
+}
+hr {
+	border-color: grey;
+}
+
+/* Scroll Selection Color */
+::selection {
+	  background: grey; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+	  background: grey; /* Gecko Browsers */
+}
+
+/* HEADER */
+.brand-img {
+	height: 40px;
+	padding-bottom: 10px;
+	padding-left: 20px;
 }
 .navbar-right {
 	float: right;
@@ -165,57 +123,81 @@ textarea {
 .navbar-default .navbar-nav>li {
 	display: inline;
 }
-li {
-	display: inline;
-}
-#footer {
-	background: transparent;
-	width:100%;
-	height:30px;
-	position:absolute;
-	bottom:0;
-	left:15;
-	color: white;
-}
-html,
-body {
-	padding:0;
-	height:100%;
-}
-#wrapper {
-	height:100%;
-	position:relative;
 
+/* FOOTER */
+.popover {
+	color: black;
+	text-shadow: none;
 }
-.large-footer {
-	font-size: 16px;
-}
-.small {
-	font-size: 14px;
-}
-#footer a,
-#footer a:hover {
+#footer a {
 	color: #31C6E8;
 	text-decoration: none;
 }
-.attribute-left {
+#footer a:hover {
+	color: #2DB5D4;
+	text-decoration: none;
+}
+
+/* SEARCH TEMPLATE */
+.greeting {
+	margin-top:50px;
+}
+.top-hr {
+	margin-bottom: 7px;
+}
+.input-field {
+	padding-left: 10px;
+	margin-bottom: 10px;
+	height: 50px;
+	width: 75%;
 	color: white;
+	font-size: 20px;
 }
-.footer-right {
-	float: right;
-	margin-right: 15px;
+.btn-submit {
+	width: 75%;
 }
-.no-margin-top {
-	margin-top:0px;
+input,
+textarea,
+select {
+	background: rgba(110, 110, 110, .5);
+    border: 1px solid rgba(122, 122, 122, .5);
+    color: white;
+}
+input:focus,
+textarea:focus,
+select:focus { 
+	outline-color: rgba(180, 180, 180, .5);
+}
+textarea {
+	background: grey;
+    height: 55px;
+}
+::-webkit-input-placeholder { color: lightgrey; }
+:-moz-placeholder { color: lightgrey; }
+::-moz-placeholder { color: lightgrey; }
+:-ms-input-placeholder { color: lightgrey; }
+.mobile-margin-bottom {
+	margin-bottom: 50px;
+}
+
+/* RESULT TEMPLATE */
+.album-art {
+	width: 200px;
+	border-radius: 1px;
+}
+.result-track-info {
+	margin-top: 5px;
+}
+#map { 
+	height: 400px;
+	border-radius: 2px;
+}
+.results {
+	padding: 0px 20px 20px 20px;
+	border-radius: 10px;
 }
 .venue-name {
 	margin-right: 15px;
-}
-.instructional {
-	margin-top: 10px;
-}
-.mobile-margin-bottom {
-	margin-bottom: 50px;
 }
 .venue-website {
 	color: #31C6E8;
@@ -226,52 +208,17 @@ body {
 	text-decoration: none;
 }
 .result-btn {
-	background-color: transparent;
-	color: white;
 	width: 46%;
-}
-.result-btn:hover,
-.result-btn:focus {
-	background-color: #117F99;
-}
-.result-btn-margin {
 	margin-top: 15px;
+	font-size: 14px;
 }
-.btn-primary {
-	background-color: #1498B8;
-	border-color: #1498B8;
+
+.rating {
+	color: #2EBBDB;
+	padding-top: 8px;
 }
-.btn-primary:hover,
-.btn-primary:focus {
-	background-color: #1390AD;
-	border-color: #1390AD;
-}
-.brand-img {
-	height: 40px;
-	padding-bottom: 10px;
-	padding-left: 20px;
-}
-html,
-body {
-	margin:0;
-	padding:0;
-	height:100%;
-}
-#wrapper {
-	min-height:100%;
-	position:relative;
-}
-#header {
-	padding:6px;
-}
-#content {
-	padding-bottom:30px; /* Height of the footer element */
-}
-#footer {
-	width:100%;
-	height:30px;
-	position:absolute;
-	bottom:5px;
-	left:0;
-	margin-left: 41px;
+
+/* SIGN UP & LOGIN */
+.instructional {
+	margin-top: 10px;
 }

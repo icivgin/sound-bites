@@ -5,14 +5,14 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	session = require('express-session');
 
+// Inport Models
 var db = require('./models/models');
 var Map = require('./models/map');
 
 mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/sound-bites');
 
-// tell app to use bodyParser middleware
+// MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: true}));
-
 app.use(cors());
 
 // serve js and css files from public folder
@@ -22,10 +22,10 @@ app.use(session({
 	saveUninitialized: true,
 	resave: true,
 	secret: 'ask23788foawe7fy98hfiuaujiuhweflaushdo87iwhf982398fhwaep',
-	cookie: { maxAge: 60000 }
+	cookie: { maxAge: 1 * 60 * 1000 }
 }));
 
-// middleware to manage sessions
+// sessions middleware
 app.use('/', function (req, res, next) {
   // saves userId in session for logged-in user
   req.login = function (user) {
@@ -49,11 +49,6 @@ app.use('/', function (req, res, next) {
   next();
 });
 
-app.get('/logout', function (req, res, next) {
-	req.logout();
-	res.redirect('/');
-});
-
 app.get('/', function (req, res, next) {
 	res.sendFile(__dirname + '/public/views/index.html');
 });
@@ -67,7 +62,6 @@ app.get('/profile', function (req, res, next) {
 		}
 	})
 });
-
 
 app.get('/signup', function (req, res, next) {
 	res.sendFile(__dirname + '/public/views/signup.html')
@@ -101,6 +95,11 @@ app.post('/login', function (req, res) {
 	});
 });
 
+app.get('/logout', function (req, res, next) {
+	req.logout();
+	res.redirect('/');
+});
+
 //API
 app.get('/v1/me', function(req, res) {
 	req.currentUser(function (err, user) {
@@ -112,43 +111,14 @@ app.get('/v1/me', function(req, res) {
 	});
 });
 
-//DATA VALIDATION
-app.get('/v1/users/find/userName/:userName', function (req, res) {
-	var targetUserName = req.params.userName;
-	
-	db.User.findOne({userName: targetUserName}, function (err, foundUser) {
-		if(foundUser) {
-			res.json(foundUser.userName)
-		} else {
-			res.json('');
-		}
-	});
-});
-app.get('/v1/users/find/email/:email', function (req, res) {
-	var targetEmail = req.params.email;
-	
-	db.User.findOne({email: targetEmail}, function (err, foundUser) {
-		if(foundUser) {
-			res.json(foundUser.email)
-		} else {
-			res.json('');
-		}
-	});
-});
-
-
 app.get('/v1/users/:userId', function (req, res) {
-	var targetId = req.params.userId;
-
-	db.User.findOne({_id: targetId}, function (err, foundUser) {
+	db.User.findOne({_id: req.params.userId}, function (err, foundUser) {
 		res.send(foundUser);
 	});
 });
 
 app.put('/v1/users/:userId', function (req, res) {
-	var targetId = req.params.userId;
-
-	db.User.findOne({_id: targetId}, function (err, foundUser) {
+	db.User.findOne({_id: req.params.userId}, function (err, foundUser) {
 		foundUser.myResults.push({
 			trackNameResult: req.body.trackNameResult,
 			artistNameResult: req.body.artistNameResult,
@@ -169,9 +139,30 @@ app.put('/v1/users/:userId', function (req, res) {
 	});
 });
 
+//SEARCH ROUTE FOR MAPPING ALGORITHM
 app.get('/v1/search/:inputA/:inputB', function (req, res) {
 	Map.map(req.params.inputA, req.params.inputB, function (query) {
 		res.send(query);
+	});
+});
+
+//DATA VALIDATION
+app.get('/v1/users/find/userName/:userName', function (req, res) {
+	db.User.findOne({userName: req.params.userName}, function (err, foundUser) {
+		if(foundUser) {
+			res.json(foundUser.userName)
+		} else {
+			res.json('');
+		}
+	});
+});
+app.get('/v1/users/find/email/:email', function (req, res) {
+	db.User.findOne({email: req.params.email}, function (err, foundUser) {
+		if(foundUser) {
+			res.json(foundUser.email)
+		} else {
+			res.json('');
+		}
 	});
 });
 
