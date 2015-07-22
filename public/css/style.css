@@ -53,7 +53,6 @@
 
 #map { 
 	height: 400px;
-	box-shadow: 1px 2px 2px rgba(192,192,192,.5);
 	border-radius: 2px;
 }
 
@@ -65,18 +64,12 @@
 }
 
 body { 
-	/*background: url(https://i.imgur.com/fZYsf9k.jpg) no-repeat center center fixed; */
-	background-color: rgba(103, 76, 69, .9);
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	background-color: #2A3552;
 	margin-right: 20px;
 
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 	font-weight: 300;
 	color: white;
-	text-shadow: 1px 1px 4px #585858 ;
 }
 ::selection {
 	  background: grey; /* WebKit/Blink Browsers */
