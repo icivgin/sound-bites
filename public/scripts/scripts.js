@@ -30,6 +30,9 @@ var artistName = '';
 var lat = 37.7833;
 var lng = -122.4167;
 
+//popover
+$('[data-toggle="popover"]').popover()
+
 function saveGeo(position) {
 	lat = position.coords.latitude;
 	lng = position.coords.longitude;
@@ -87,6 +90,7 @@ function getResult (trackName, artistName) {
 					if (data.response.terms[0]) {	
 						genre1 = data.response.terms[0].name; 
 						genre2 = data.response.terms[1].name; 
+						console.log(genre1, genre2);
 
 						
 						//ajax request to api search (mapping)

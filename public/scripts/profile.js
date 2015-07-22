@@ -17,6 +17,9 @@ var markerDelete;
 var lastDiv;
 var thisDiv;
 
+//popover
+$('[data-toggle="popover"]').popover()
+
 String.prototype.capitalize = function(){
     return this.toLowerCase().replace( /\b\w/g, function (m) {
         return m.toUpperCase();

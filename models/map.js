@@ -38,7 +38,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 		];
 		callback(optionArr[random]);
 
-	} else if (placeholder1 == 'indie folk' || placeholder1 == 'singer-songwriter' || placeholder1 == 'native american' || placeholder1 == 'bluegrass' || placeholder1 == 'new wave' || placeholder1 == 'alternative' || placeholder1 == 'indie pop') {
+	} else if (placeholder1 == 'indie folk' || placeholder1 == 'indie' || placeholder1 == 'folk' || placeholder1 == 'singer-songwriter' || placeholder1 == 'native american' || placeholder1 == 'bluegrass' || placeholder1 == 'new wave' || placeholder1 == 'alternative' || placeholder1 == 'indie pop') {
 		var optionArr = [
 			'coffee',
 			'brunch',
@@ -248,7 +248,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 		];
 		callback(optionArr[random]);
 
-	} else if (placeholder2 == 'indie folk' || placeholder2 == 'singer-songwriter' || placeholder2 == 'native american' || placeholder2 == 'bluegrass' || placeholder2 == 'new wave' || placeholder2 == 'alternative' || placeholder2 == 'indie pop') {
+	} else if (placeholder2 == 'indie folk' || placeholder1 == 'indie' || placeholder1 == 'folk' || placeholder2 == 'singer-songwriter' || placeholder2 == 'native american' || placeholder2 == 'bluegrass' || placeholder2 == 'new wave' || placeholder2 == 'alternative' || placeholder2 == 'indie pop') {
 		var optionArr = [
 			'coffee',
 			'brunch',

@@ -1,5 +1,8 @@
 $(function() {
 
+//popover
+$('[data-toggle="popover"]').popover()
+
 function check() {
 	var atInclude = $('#new-user-email').val().indexOf('@');
 	console.log(atInclude);
