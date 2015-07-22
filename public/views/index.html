@@ -17,27 +17,31 @@
 </head>
 <body>
 	<div id='wrapper'>
-		<div class='shift-left'>
 		<!-- navbar -->
-		<nav class="navbar navbar-default">
-		  <div class="container-fluid">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class='navbar-header left'>
-		    	<a href='/'><img class='brand-img' src='https://i.imgur.com/YIHwwKr.png' /></a>
-		    </div>
-		    <div class="navbar-header right navbar-pad" id='navbar-view'></div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-
-		<!-- input template -->
-		<div id='search-view'></div>
+		<div id='header'>
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class='navbar-header left'>
+			    	<a href='/'><img class='brand-img' src='https://i.imgur.com/YIHwwKr.png' /></a>
+			    </div>
+			    <div class="navbar-header right navbar-pad" id='navbar-view'></div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+		</div>
 		
-		<!-- display div -->
-		<div class='row center'>
-			<div class='col-md-6 col-md-offset-3'>
-				<div id='result-view'></div>
+		<div id='content'>
+			<!-- input template -->
+			<div id='search-view'></div>
+			
+			<!-- display div -->
+			<div class='row center'>
+				<div class='col-md-6 col-md-offset-3'>
+					<div id='result-view'></div>
+				</div>
 			</div>
 		</div>
+
 		<div id='footer'>
 			<p><span class='attribute-left'><span class='popover-color' data-container="body" data-trigger='hover' data-toggle="popover" data-placement="top" data-content="Powered by Foursquare, Echo Nest, and Spotify.">About</span>&nbsp;&nbsp;|&nbsp;&nbsp;Created by </span><a target='_blank' href='http://www.iancivgin.com'>Ian Civgin</a></p>
 		</div>
@@ -63,7 +67,7 @@
 	<script type="text/x-handlebars-template" id='search-template'>
 		<div class='row center'>
 			<div class='col-md-4 col-md-offset-4'>
-				<h1 class='large top'>Hey, {{user}}!</h1>
+				<h1 class='large top'><i>Hey, {{user}}!</i></h1>
 				<h2 class='helvetica'>Enter the last song you listened to and find your next new spot.</h2><hr class='top-hr'><br>
 				<form id='submit-track'>
 					<input type='text' class='input-field' id='track-name' placeholder="Song's name here" required autofocus></input><br>
@@ -86,32 +90,32 @@
 		<h1> {{ food }} </h1>
 	</script>
 
-	<!-- final result script -->
+	<!-- four star result -->
 	<script type='text/x-handlebars-template' id='result-template-four'>
 		<div class='results'>
 			<div class='row'>
 				<h1 class='text-center large no-margin-top'><i>Based on ...</i></h1>
 				<br>
-				<div class='col-lg-7'>
+				<div class='col-sm-7'>
 					<img class='album-art right' src='{{ albumArt }}' />
 				</div>
-				<div class='col-lg-5 left no-pad-left'>
+				<div class='col-sm-5 left no-pad-left'>
 					<h2 class='result-track-name' id='research-name'>{{ trackNameResult }} </h2>
 					<h4 class='result-artist-name' id='research-artist'> {{ artistNameResult }} </h4>
 				</div>
 			</div>
 			<hr>
 			<div class='row'>
-				<div class='col-lg-7'>
+				<div class='col-sm-7'>
 					<div id='map'></div>
 				</div>
-				<div class='col-lg-5 left'>
+				<div class='col-sm-5 left'>
 					<div class='row'>
-						<div class='col-lg-10 no-pad-left'>
+						<div class='col-sm-10 no-pad-left'>
 							<h2 class='inline left venue-name'>{{ venueName }}</h2>
 							<h4 class='no-pad-top'>{{ venueCat }}</h4>
 						</div>
-						<div class='col-lg-2'>
+						<div class='col-sm-2'>
 							<p class='rating right'><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span></p>
 						</div>
 					</div>
@@ -135,26 +139,26 @@
 			<div class='row'>
 				<h1 class='text-center large no-margin-top'><i>Based on ...</i></h1>
 				<br>
-				<div class='col-lg-7'>
+				<div class='col-sm-7'>
 					<img class='album-art right' src='{{ albumArt }}' />
 				</div>
-				<div class='col-lg-5 left no-pad-left'>
+				<div class='col-sm-5 left no-pad-left'>
 					<h2 class='result-track-name' id='research-name'>{{ trackNameResult }} </h2>
 					<h4 class='result-artist-name' id='research-artist'> {{ artistNameResult }} </h4>
 				</div>
 			</div>
 			<hr>
 			<div class='row'>
-				<div class='col-lg-7'>
+				<div class='col-sm-7'>
 					<div id='map'></div>
 				</div>
-				<div class='col-lg-5 left'>
+				<div class='col-sm-5 left'>
 					<div class='row'>
-						<div class='col-lg-10 no-pad-left'>
+						<div class='col-sm-10 no-pad-left'>
 							<h2 class='inline left venue-name'>{{ venueName }}</h2>
 							<h4 class='no-pad-top'>{{ venueCat }}</h4>
 						</div>
-						<div class='col-lg-2'>
+						<div class='col-sm-2'>
 							<p class='rating right'><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span></p>
 						</div>
 					</div>

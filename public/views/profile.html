@@ -20,36 +20,40 @@
 </head>
 <body>
 	<div id='wrapper'>
-		<div class='shift-left'>
-		<!-- navbar -->
-		<nav class="navbar navbar-default">
-		  <div class="container-fluid">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class='navbar-header left'>
-		    	<a href='/'><img class='brand-img' src='https://i.imgur.com/YIHwwKr.png' /></a>
-		    </div>
-		    <div class="navbar-header right navbar-pad" id='navbar-view'></div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-		<div class='row'>
-			<div class='col-lg-9' id='left'>
-				<div id='map'></div>
+		<div id='header'>
+			<!-- navbar -->
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class='navbar-header left'>
+			    	<a href='/'><img class='brand-img' src='https://i.imgur.com/YIHwwKr.png' /></a>
+			    </div>
+			    <div class="navbar-header right navbar-pad" id='navbar-view'></div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+		</div>
+		<div id='content'>
+			<div class='row'>
+				<div class='col-lg-9' id='left'>
+					<div id='map'></div>
+				</div>
+				<div class='col-lg-3' id='right'>
+					<h3 class='left'>Recent Searches</h3>
+					<hr>
+					<div id='results-view'></div>
+				</div>
 			</div>
-			<div class='col-lg-3' id='right'>
-				<h3 class='left'>Recent Searches</h3>
-				<hr>
-				<div id='results-view'></div>
+			<!-- input template -->
+			<div id='history-view'></div>
+			
+			<!-- display div -->
+			<div class='row center'>
+				<div class='col-md-6 col-md-offset-3'>
+					<div id='result-view'></div>
+				</div>
 			</div>
 		</div>
-		<!-- input template -->
-		<div id='history-view'></div>
 		
-		<!-- display div -->
-		<div class='row center'>
-			<div class='col-md-6 col-md-offset-3'>
-				<div id='result-view'></div>
-			</div>
-		</div>
 		<div id='footer'>
 			<p><span class='attribute-left'><span class='popover-color' data-container="body" data-trigger='hover' data-toggle="popover" data-placement="top" data-content="Powered by Foursquare, Echo Nest, and Spotify.">About</span>&nbsp;&nbsp;|&nbsp;&nbsp;Created by </span><a target='_blank' href='http://www.iancivgin.com'>Ian Civgin</a></p>
 		</div>
