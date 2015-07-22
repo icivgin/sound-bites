@@ -63,13 +63,8 @@
 }
 
 body { 
-	/*background-color: #2A3552;*/
 	margin-right: 20px;
-	background: #06586B;
-	 background-image: -webkit-radial-gradient(top, circle cover, #055061 0%, #032E38 80%);
-	 background-image: -moz-radial-gradient(top, circle cover, #055061 0%, #032E38 80%);
-	 background-image: -o-radial-gradient(top, circle cover, #055061 0%, #032E38 80%);
-	 background-image: radial-gradient(top, circle cover, #055061 0%, #032E38 80%);
+	background-color: #2A3552;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 	font-weight: 300;
 	color: white;
