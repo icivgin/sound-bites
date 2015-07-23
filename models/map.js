@@ -163,13 +163,13 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'comfort food',
 			'pulled pork',
 			'BBQ',
-			'southern food',
+			'southern',
 			'grits',
 			'comfort food',
 			'bbq',
 			'ribs',
 			'homestyle',
-			'homestyle food'
+			'homestyle'
 		];
 		callback(optionArr[random]);
 
@@ -373,13 +373,13 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'comfort food',
 			'pulled pork',
 			'BBQ',
-			'southern food',
+			'southern',
 			'grits',
 			'comfort food',
 			'bbq',
 			'ribs',
 			'homestyle',
-			'homestyle food'
+			'homestyle'
 		];
 		callback(optionArr[random]);
 
