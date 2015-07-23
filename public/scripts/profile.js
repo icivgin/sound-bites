@@ -36,7 +36,7 @@ $('#results-view').on('mouseover', '.result-div', function (event) {
 	lastDiv = that;
 
 	// map.setView([that.attr('data-lat'), that.attr('data-lng')], 14);
-	map.setView([37.769086, -122.445374], 13);
+	map.setView([that.attr('data-lat'), that.attr('data-lng')], 13);
 	map.removeLayer(marker);
 	marker = new L.marker([that.attr('data-lat'), that.attr('data-lng')]).addTo(map);
 });
