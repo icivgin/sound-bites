@@ -28,9 +28,9 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'burgers',
 			'burgers and fries',
 			'american grill',
-			'beer',
-			'steaks',
 			'brewery',
+			'steaks',
+			'BBQ',
 			'live music',
 			'sports bar',
 			'grill',
@@ -55,14 +55,14 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 
 	} else if (placeholder1 == 'rap' || placeholder1 == 'hip hop' || placeholder1 == 'gangster rap' || placeholder1 == 'old school hip hop' || placeholder1 == 'cajun' || placeholder1 == 'blues' ) {
 		var optionArr = [
-			'fried chicken',
-			'cajun',
+			'lounge',
+			'speakeasy bar',
 			'southern food',
 			'steak',
-			'ribs',
-			'waffles',
+			'homestyle',
+			'BBQ',
 			'soul food',
-			'speakeasy bar',
+			'cajun food',
 			'hip hop bar',
 			'night club lounge'
 		];
@@ -70,13 +70,13 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 
 	} else if (placeholder1 == 'r&b' || placeholder1 == 'soul' ) {
 		var optionArr = [
-			'creole',
+			'lounge',
 			'soul food',
-			'cajun',
-			'southern',
+			'outdoor patio',
+			'southern food',
 			'cocktails',
-			'steak and wine',
-			'whisky',
+			'steakhouse',
+			'wine bar',
 			'speakeasy bar',
 			'oysters',
 			'good cocktails'
@@ -85,15 +85,15 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 
 	} else if (placeholder1 == 'edm' || placeholder1 == 'dubstep' || placeholder1 == 'electronica' || placeholder1 == 'electronic' || placeholder1 == 'eurodance' || placeholder1 == 'experimental' || placeholder1 == 'house' || placeholder1 == 'german techno' || placeholder1 == 'glitch' || placeholder1 == 'techno' || placeholder1 == 'trance' || placeholder1 == 'drum and bass' ) {
 		var optionArr = [
-			'party',
-			'loud',
-			'late night',
+			'lounge',
+			'club',
+			'late night food',
 			'dance club',
-			'club',
-			'groups',
-			'pasta',
+			'cocktail bar',
+			'late night food',
+			'dance club',
 			'burrito',
-			'club',
+			'dance club',
 			'dance club'
 		];
 		callback(optionArr[random]);
@@ -108,8 +108,8 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'british',
 			'guinness',
 			'dive bar',
-			'sheperd pie',
-			'cocktails'
+			'sheperds pie',
+			'brewery'
 		];
 		callback(optionArr[random]);
 
@@ -119,12 +119,12 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'pallela',
 			'spanish food',
 			'tapas',
-			'mexican',
+			'mexican food',
 			'tapas',
 			'sangria',
 			'cajun food',
 			'carribean food',
-			'maduros'
+			'latin food'
 		];
 		callback(optionArr[random]);
 
@@ -146,38 +146,38 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 	} else if (placeholder1 == 'swing' || placeholder1 == 'motown' || placeholder1 == 'rock-and-roll' || placeholder1 == 'ragtime' || placeholder1 == 'disco' || placeholder1 == 'broadway' || placeholder1 == 'barbershop' || placeholder1 == 'big band' || placeholder1 == 'bebop' || placeholder1 == 'boogie-woogie' ) {
 		var optionArr = [
 			'burger',
-			'shake',
+			'shakes',
 			'diner',
 			'diner',
 			'retro restaurant',
 			'patty melt',
 			'old fashioned restaurant',
-			'diner',
-			'soda bar',
+			'shakes',
+			'ice cream',
 			'ice cream bar'
 		];
 		callback(optionArr[random]);
 
 	} else if (placeholder1 == 'country' || placeholder1 == 'honky tonk' || placeholder1 == 'nashville sound' ) {
 		var optionArr = [
-			'sweet tea',
+			'comfort food',
 			'pulled pork',
-			'fried chicken',
-			'southern',
+			'BBQ',
+			'southern food',
 			'grits',
 			'comfort food',
 			'bbq',
 			'ribs',
 			'homestyle',
-			'homestyle'
+			'homestyle food'
 		];
 		callback(optionArr[random]);
 
 	} else if (placeholder1 == 'jazz' || placeholder1 == 'smooth jazz' || placeholder1 == 'bossa nova' || placeholder1 == 'vocal jazz' || placeholder1 == 'lounge' || placeholder1 == 'classical' ) {
 		var optionArr = [
 			'fine dining',
-			'5 star',
-			'michelin',
+			'5 star restaurant',
+			'michelin star',
 			'champagne',
 			'oysters',
 			'steak house',
@@ -191,7 +191,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 	} else if (placeholder1 == 'reggae' || placeholder1 == 'hawaiian' || placeholder1 == 'ska' || placeholder1 == 'ukulele' ) {
 		var optionArr = [
 			'hawaiian food',
-			'hippy cafe',
+			'natural cafe',
 			'beach food',
 			'acai',
 			'locally sourced',
@@ -205,16 +205,16 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 
 	} else if (placeholder1 == 'grime' || placeholder1 == 'grunge' || placeholder1 == 'punk'  || placeholder1 == 'emo' || placeholder1 == 'lo-fi' ) {
 		var optionArr = [
-			'cofee shop',
-			'funky bar',
+			'punk rock bar',
+			'dive bar',
 			'live music',
 			'cofee shop',	
+			'street food',
+			'live music',
 			'funky bar',
+			'punk rock bar',
 			'live music',
-			'dive bar',
-			'crappy bar',
-			'live music',
-			'cofee shop'
+			'food trucks'
 		];
 		callback(optionArr[random]);
 
@@ -226,7 +226,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'ice cream',
 			'juice',
 			'smoothie',
-			'locally sourced',
+			'organic food',
 			'salad wrap',
 			'salad',
 			'fresh'
@@ -237,13 +237,13 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 		var optionArr = [
 			'burgers',
 			'burgers and fries',
-			'shakes',
-			'beer',
+			'american grill',
+			'brewery',
 			'steaks',
-			'happy hour',
+			'BBQ',
 			'live music',
 			'sports bar',
-			'sports bar',
+			'grill',
 			'burgers'
 		];
 		callback(optionArr[random]);
@@ -256,7 +256,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'brewery',
 			'small plates',
 			'wine bar',
-			'organic',
+			'organic restaurant',
 			'locally sourced',
 			'farm to table',
 			'homestyle'
@@ -265,28 +265,28 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 
 	} else if (placeholder2 == 'rap' || placeholder2 == 'hip hop' || placeholder2 == 'gangster rap' || placeholder2 == 'old school hip hop' || placeholder2 == 'cajun' || placeholder2 == 'blues' ) {
 		var optionArr = [
-			'fried chicken',
-			'cajun',
+			'lounge',
+			'speakeasy bar',
 			'southern food',
 			'steak',
-			'ribs',
-			'waffles',
+			'homestyle',
+			'BBQ',
 			'soul food',
-			'speakeasy bar',
+			'cajun food',
 			'hip hop bar',
-			'bbq'
+			'night club lounge'
 		];
 		callback(optionArr[random]);
 
 	} else if (placeholder2 == 'r&b' || placeholder2 == 'soul' ) {
 		var optionArr = [
-			'creole',
+			'lounge',
 			'soul food',
-			'cajun',
-			'southern',
-			'classy dinner',
-			'steak and wine',
-			'whisky',
+			'outdoor patio',
+			'southern food',
+			'cocktails',
+			'steakhouse',
+			'wine bar',
 			'speakeasy bar',
 			'oysters',
 			'good cocktails'
@@ -295,15 +295,15 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 
 	} else if (placeholder2 == 'edm' || placeholder2 == 'dubstep' || placeholder2 == 'electronica' || placeholder1 == 'electronic' || placeholder2 == 'eurodance' || placeholder2 == 'experimental' || placeholder2 == 'house' || placeholder2 == 'german techno' || placeholder2 == 'glitch' || placeholder2 == 'techno' || placeholder2 == 'trance' || placeholder2 == 'drum and bass' ) {
 		var optionArr = [
-			'party',
-			'loud',
-			'late night',
+			'lounge',
+			'club',
+			'late night food',
 			'dance club',
-			'club',
-			'groups',
-			'pasta',
+			'cocktail bar',
+			'late night food',
+			'dance club',
 			'burrito',
-			'club',
+			'dance club',
 			'dance club'
 		];
 		callback(optionArr[random]);
@@ -318,8 +318,8 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'british',
 			'guinness',
 			'dive bar',
-			'sheperd pie',
-			'cocktails'
+			'sheperds pie',
+			'brewery'
 		];
 		callback(optionArr[random]);
 
@@ -329,12 +329,12 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'pallela',
 			'spanish food',
 			'tapas',
-			'mexican',
+			'mexican food',
 			'tapas',
 			'sangria',
 			'cajun food',
 			'carribean food',
-			'maduros'
+			'latin food'
 		];
 		callback(optionArr[random]);
 
@@ -356,38 +356,38 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 	} else if (placeholder2 == 'swing' || placeholder2 == 'motown' || placeholder2 == 'rock-and-roll' || placeholder2 == 'ragtime' || placeholder2 == 'disco' || placeholder2 == 'broadway' || placeholder2 == 'barbershop' || placeholder2 == 'big band' || placeholder2 == 'bebop' || placeholder2 == 'boogie-woogie' ) {
 		var optionArr = [
 			'burger',
-			'shake',
+			'shakes',
 			'diner',
 			'diner',
 			'retro restaurant',
 			'patty melt',
 			'old fashioned restaurant',
-			'diner',
-			'soda bar',
+			'shakes',
+			'ice cream',
 			'ice cream bar'
 		];
 		callback(optionArr[random]);
 
 	} else if (placeholder2 == 'country' || placeholder2 == 'honky tonk' || placeholder2 == 'nashville sound' ) {
 		var optionArr = [
-			'sweet tea',
+			'comfort food',
 			'pulled pork',
-			'fried chicken',
-			'southern',
+			'BBQ',
+			'southern food',
 			'grits',
 			'comfort food',
 			'bbq',
 			'ribs',
 			'homestyle',
-			'homestyle'
+			'homestyle food'
 		];
 		callback(optionArr[random]);
 
 	} else if (placeholder2 == 'jazz' || placeholder2 == 'smooth jazz' || placeholder2 == 'easy listening' || placeholder2 == 'bossa nova' || placeholder2 == 'vocal jazz' || placeholder2 == 'lounge' || placeholder2 == 'classical' ) {
 		var optionArr = [
 			'fine dining',
-			'5 star',
-			'michelin',
+			'5 star restaurant',
+			'michelin star',
 			'champagne',
 			'oysters',
 			'steak house',
@@ -401,7 +401,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 	} else if (placeholder2 == 'reggae' || placeholder2 == 'hawaiian' || placeholder2 == 'ska' || placeholder2 == 'ukulele' ) {
 		var optionArr = [
 			'hawaiian food',
-			'hippy cafe',
+			'natural cafe',
 			'beach food',
 			'acai',
 			'locally sourced',
@@ -415,16 +415,16 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 
 	} else if (placeholder2 == 'grime' || placeholder2 == 'grunge' || placeholder2 == 'punk' || placeholder2 == 'hardcore' || placeholder2 == 'emo' || placeholder2 == 'lo-fi' ) {
 		var optionArr = [
-			'cofee shop',
-			'funky bar',
+			'punk rock bar',
+			'dive bar',
 			'live music',
 			'cofee shop',	
+			'street food',
+			'live music',
 			'funky bar',
+			'punk rock bar',
 			'live music',
-			'dive bar',
-			'crappy bar',
-			'live music',
-			'cofee shop'
+			'food trucks'
 		];
 		callback(optionArr[random]);
 	}

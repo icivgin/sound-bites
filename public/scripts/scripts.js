@@ -35,6 +35,9 @@ $('[data-toggle="popover"]').popover()
 
 //retrieving current location
 function saveGeo(position) {
+	console.log('location found');
+	addEventHandlers();
+	$('#submit-button').html('Search').css('background-color', '#1498B8').css('border-color', '#1498B8');
 	lat = position.coords.latitude;
 	lng = position.coords.longitude;
 }
@@ -59,8 +62,26 @@ function setupView() {
 	});
 }
 
-//run setupView on page load
-setupView();
+//sets up the initial view
+function setupFirstView() {
+	$.get('/v1/me', function (data) {
+		if(data) {
+			globalUserData = data;
+			$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
+			$('#search-view').html(searchTemplate({user: globalUserData.firstName.capitalize()}));
+			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
+			$('#track-name').focus();
+		} else {
+			$('#navbar-view').html(userFalseTemplate());
+			$('#search-view').html(searchTemplate({user:'you'}));
+			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
+			$('#track-name').focus();
+		}
+	});
+}
+
+//run setupFirstView on page load
+setupFirstView();
 
 String.prototype.capitalize = function(){
     return this.toLowerCase().replace( /\b\w/g, function (m) {
