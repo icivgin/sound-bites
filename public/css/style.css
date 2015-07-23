@@ -1,8 +1,10 @@
+/* General ------------------------------------------------------------*/
 html,
 body {
 	margin:0;
 	padding:0;
 	height:100%;
+	overflow-x: hidden;
 }
 #wrapper {
 	min-height:100%;
@@ -12,25 +14,28 @@ body {
 	padding:6px;
 }
 #content {
-	padding-bottom:30px; /* Height of the footer element */
+	padding-bottom:70px;
 }
 #footer {
-	width:100%;
 	height:30px;
 	position:absolute;
-	bottom:5px;
+	bottom:15px;
 	left:0;
 	padding-left: 41px;
 }
 body { 
-	padding-right: 20px;
 	background-color: #2A3552;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; 
 	font-weight: 300;
 	color: white;
+	background: url(http://i.imgur.com/pw4XgzB.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
-/* Default Buttons */
+/* Default Buttons ------------------------------------------------------------*/
 .btn-primary {
 	background-color: #1498B8;
 	border-color: #1498B8;
@@ -42,9 +47,8 @@ body {
 	border-color: #1390AD;
 }
 
-/* Alignment CSS */
+/* Alignment CSS ------------------------------------------------------------*/
 .center {
-	float: center;
 	text-align: center;
 }
 .left {
@@ -63,15 +67,15 @@ body {
 	margin-top:0px;
 }
 
-/* Sizing CSS */
+/* Sizing CSS ------------------------------------------------------------*/
 .small {
 	font-size: 14px;
 }
 .large {
-	font-size:56px;
+	font-size:48px;
 }
 
-/* Other General CSS */
+/* Other General CSS ------------------------------------------------------------*/
 .inline {
 	display: inline;
 }
@@ -79,15 +83,15 @@ hr {
 	border-color: grey;
 }
 
-/* Scroll Selection Color */
+/* Scroll Selection Color ------------------------------------------------------------*/
 ::selection {
-	  background: grey; /* WebKit/Blink Browsers */
+	  background: grey;
 }
 ::-moz-selection {
-	  background: grey; /* Gecko Browsers */
+	  background: grey;
 }
 
-/* HEADER */
+/* HEADER ------------------------------------------------------------*/
 .brand-img {
 	height: 40px;
 	padding-bottom: 10px;
@@ -95,6 +99,9 @@ hr {
 }
 .navbar-right {
 	float: right;
+}
+.navbar-nav {
+	padding-top: 4px;
 }
 .navbar-pad {
 	padding-right: 30px;
@@ -114,7 +121,7 @@ hr {
 	text-decoration: none;
 }
 .navbar-default {
-	margin-top: 20px;
+	margin-top: 15px;
 	margin-bottom: 0px;
 	background-color: transparent;
 	border: 0px;
@@ -124,7 +131,7 @@ hr {
 	display: inline;
 }
 
-/* FOOTER */
+/* FOOTER ------------------------------------------------------------*/
 .popover {
 	color: black;
 	text-shadow: none;
@@ -138,7 +145,11 @@ hr {
 	text-decoration: none;
 }
 
-/* SEARCH TEMPLATE */
+/* SEARCH TEMPLATE ------------------------------------------------------------*/
+.search {
+	min-height: 400px;
+	padding-top: 35px;
+}
 .greeting {
 	margin-top:50px;
 }
@@ -159,7 +170,7 @@ hr {
 input,
 textarea,
 select {
-	background: rgba(110, 110, 110, .5);
+	background: rgba(80, 80, 80, .7);
     border: 1px solid rgba(122, 122, 122, .5);
     color: white;
 }
@@ -179,8 +190,11 @@ textarea {
 .mobile-margin-bottom {
 	margin-bottom: 50px;
 }
+.cvp {
+	text-shadow: 1px 1px 1px grey;
+}
 
-/* RESULT TEMPLATE */
+/* RESULT TEMPLATE ------------------------------------------------------------*/
 .album-art {
 	width: 200px;
 	border-radius: 1px;
@@ -218,7 +232,26 @@ textarea {
 	padding-top: 8px;
 }
 
-/* SIGN UP & LOGIN */
+/* SIGN UP & LOGIN ------------------------------------------------------------*/
 .instructional {
 	margin-top: 10px;
+}
+
+/* Instructables ------------------------------------------------------------*/
+.instructable {
+	min-height: 160px;
+	border-left: solid grey 1px;
+}
+.instructable-menu {
+	background: rgba(80,80,80,.5);
+	padding-bottom: 35px;
+	border-radius: 10px;
+}
+.instructable-menu div {
+	border-color: white;
+}
+.white {
+	background-color: rgba(80,80,80,.7);
+	padding: 15px;
+	border-radius:7;
 }

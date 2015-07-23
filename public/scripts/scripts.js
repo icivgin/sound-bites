@@ -6,8 +6,8 @@ var searchTemplate = Handlebars.compile(searchSource);
 var finalSourceFour = $('#result-template-four').html();
 var finalTemplateFour = Handlebars.compile(finalSourceFour);
 
-var finalSourceThree = $('#result-template-three').html();
-var finalTemplateThree = Handlebars.compile(finalSourceThree);
+var ratingThreeSource = $('#rating-three').html();
+var ratingThreeTemplate = Handlebars.compile(ratingThreeSource);
 
 var userTrue = $('#user-true').html();
 var userTrueTemplate = Handlebars.compile(userTrue);
@@ -142,7 +142,9 @@ function getResult (trackName, artistName) {
 								if(finalResult.venueRating > 7.5) {
 									$('#result-view').html(finalTemplateFour(finalResult));
 								} else if (finalResult.venueRating > 5) {
-									$('#result-view').html(finalTemplateThree(finalResult));
+									$('#result-view').html(finalTemplateFour(finalResult));
+									$('#rating').html(ratingThreeTemplate());
+
 								}
 
 								//Add event handlers
