@@ -20,7 +20,7 @@ $('#new-user-userName').on('focusout', function (event) {
 	$.get('/v1/users/find/userName/' + attempt, function (data) {
 		if(data === attempt) {
 			alert('Username already taken.');
-			$('#new-user-userName').focus();
+			$('#new-user-userName').focus().val('');
 		}
 	});
 });
