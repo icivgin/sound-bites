@@ -93,7 +93,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'late night food',
 			'dance club',
 			'burrito',
-			'dance club',
+			'dance bar',
 			'dance club'
 		];
 		callback(optionArr[random]);
@@ -303,7 +303,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'late night food',
 			'dance club',
 			'burrito',
-			'dance club',
+			'dance bar',
 			'dance club'
 		];
 		callback(optionArr[random]);
