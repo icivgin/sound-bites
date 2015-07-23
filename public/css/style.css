@@ -130,6 +130,20 @@ hr {
 .navbar-default .navbar-nav>li {
 	display: inline;
 }
+.collapsed-nav {
+	margin-top: 0px;
+	border: 0px;
+}
+.navbar-default .navbar-toggle:focus, 
+.navbar-default .navbar-toggle:hover {
+	background-color: transparent;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: white;
+}
+.navbar-default .navbar-toggle:hover {
+	background-color: lightgrey;
+}
 
 /* FOOTER ------------------------------------------------------------*/
 .popover {
