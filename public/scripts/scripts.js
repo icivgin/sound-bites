@@ -35,7 +35,7 @@ $('[data-toggle="popover"]').popover()
 
 //retrieving current location
 function saveGeo(position) {
-	console.log('location found');
+	// console.log('Location found');
 	addEventHandlers();
 	$('#submit-button').html('Search').css('background-color', '#1498B8').css('border-color', '#1498B8');
 	lat = position.coords.latitude;
@@ -113,13 +113,13 @@ function getResult (trackName, artistName) {
 					genre2 = data.response.terms[1].name; 
 
 					// Show genre toggle (testing)
-					console.log(genre1, genre2);
+					// console.log(genre1, genre2);
 					
 					//ajax request to api search (mapping)
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 						
 						// make call to 4square api
-						$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + '41.8369' + ',' + '-87.6847' + '&llAcc=10000.0&radius=10000&limit=10&query=' + data, function (data) {
+						$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&radius=10000&limit=10&query=' + data, function (data) {
 							
 							// checks that query returns results
 							if(data.response.groups[0].items.length > 0) {

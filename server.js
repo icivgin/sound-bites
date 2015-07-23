@@ -22,7 +22,7 @@ app.use(session({
 	saveUninitialized: true,
 	resave: true,
 	secret: 'ask23788foawe7fy98hfiuaujiuhweflaushdo87iwhf982398fhwaep',
-	cookie: { maxAge: 1 * 60 * 1000 }
+	cookie: { maxAge: 5 * 60 * 1000 }
 }));
 
 // sessions middleware
