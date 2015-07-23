@@ -55,7 +55,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 $.get('/v1/me', function (data) {
 	if(data) {
 		globalUserData = data;
-		$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
+		$('#navbar-view').html(userTrueTemplate({user: data.userName.capitalize()}));
 
 		$.get('/v1/users/' + globalUserData._id, function (data) {
 			for(i=0; i<data.myResults.length; i++) {

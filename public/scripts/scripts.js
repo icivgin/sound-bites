@@ -49,8 +49,8 @@ function setupView() {
 	$.get('/v1/me', function (data) {
 		if(data) {
 			globalUserData = data;
-			$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
-			$('#search-view').html(searchTemplate({user: globalUserData.firstName.capitalize()}));
+			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
+			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
 			addEventHandlers();
 			$('#track-name').focus();
 		} else {
@@ -67,8 +67,8 @@ function setupFirstView() {
 	$.get('/v1/me', function (data) {
 		if(data) {
 			globalUserData = data;
-			$('#navbar-view').html(userTrueTemplate({user: data.firstName.capitalize()}));
-			$('#search-view').html(searchTemplate({user: globalUserData.firstName.capitalize()}));
+			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
+			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
 			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
 			$('#track-name').focus();
 		} else {

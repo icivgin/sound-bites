@@ -69,7 +69,7 @@ app.get('/signup', function (req, res, next) {
 
 app.post('/signup', function (req, res) {
 	var newUser = req.body;
-
+	
 	db.User.createSecure(newUser, function (err, user) {
 		req.login(user);
 		res.redirect('/');

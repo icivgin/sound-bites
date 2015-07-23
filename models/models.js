@@ -18,9 +18,7 @@ var ResultSchema = new Schema({
 });
 
 var UserSchema = new Schema ({
-	firstName: String,
 	userName: String,
-	email: { type: String, unique: true }, 
 	passwordDigest: String,
 	myResults: [ResultSchema]
 });
@@ -32,9 +30,7 @@ UserSchema.statics.createSecure = function (newUser, callback) {
 		bcrypt.hash(newUser.password, salt, function (err, hash) {
 
 			that.create({
-				firstName: newUser.firstName,
 				userName: newUser.userName,
-				email: newUser.email,
 				passwordDigest: hash
 			}, callback);
 
