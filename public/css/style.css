@@ -28,7 +28,7 @@ body {
 	font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; 
 	font-weight: 300;
 	color: white;
-	background: url(http://i.imgur.com/pw4XgzB.jpg) no-repeat center center fixed; 
+	background: url(https://i.imgur.com/feqUsCJ.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -137,7 +137,7 @@ hr {
 	text-shadow: none;
 }
 #footer a {
-	color: #31C6E8;
+	color: lightgrey;
 	text-decoration: none;
 }
 #footer a:hover {
@@ -193,8 +193,17 @@ textarea {
 .cvp {
 	text-shadow: 1px 1px 1px grey;
 }
+.how { color: grey; }
+.how:hover {
+	color: #2DB5D4;
+}
 
 /* RESULT TEMPLATE ------------------------------------------------------------*/
+.result-background {
+	background-color: rgba(80,80,80,.5);
+	padding: 15px;
+	border-radius:7;
+}
 .album-art {
 	width: 200px;
 	border-radius: 1px;
@@ -207,11 +216,11 @@ textarea {
 	border-radius: 2px;
 }
 .results {
-	padding: 0px 20px 20px 20px;
+	padding: 20px 20px 20px 20px;
 	border-radius: 10px;
 }
 .venue-name {
-	margin-right: 15px;
+	margin-right: 20px;
 }
 .venue-website {
 	color: #31C6E8;
@@ -249,9 +258,4 @@ textarea {
 }
 .instructable-menu div {
 	border-color: white;
-}
-.white {
-	background-color: rgba(80,80,80,.7);
-	padding: 15px;
-	border-radius:7;
 }

@@ -59,7 +59,7 @@ $.get('/v1/me', function (data) {
 
 		$.get('/v1/users/' + globalUserData._id, function (data) {
 			for(i=0; i<data.myResults.length; i++) {
-				$('#results-view').append(resultTemplate(data.myResults[i]));
+				$('#results-view').prepend(resultTemplate(data.myResults[i]));
 				if(i===0) {
 					var that = $('#results-view').find('.result-div');
 					lastDiv = that;
