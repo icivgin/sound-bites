@@ -167,8 +167,11 @@ app.get('/v1/users/find/email/:email', function (req, res) {
 });
 
 app.get('/v1/secrets', function (req, res) {
-	var x = process.env.ECHO_NEST_API_KEY;
-	res.send(x);
+	var secrets = {
+		ECHO_NEST_API_KEY: process.env.ECHO_NEST_API_KEY,
+		FOURSQUARE_CLIENT_ID: process.env.FOURSQUARE_CLIENT_ID,
+		FOURSQUARE_CLIENT_SECRET: process.env.FOURSQUARE_CLIENT_SECRET
+	res.send(secrets);
 })
 
 app.listen(process.env.PORT || 3000);

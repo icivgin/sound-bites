@@ -17,12 +17,7 @@ var userFalseTemplate = Handlebars.compile(userFalse);
 
 var toggle = true;
 
-var apiKey;
-$.get('/v1/secrets', function (data) {
-	console.log(data);
-})
-// var FOURSQUARE_CLIENT_ID = process.env.FOURSQUARE_CLIENT_ID;
-// var FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;
+var secrets;
 
 var trackName = '';
 var artistName = '';
@@ -31,6 +26,11 @@ var lat = 37.7833;
 var lng = -122.4167;
 
 var globalUserData;
+
+// get api secrets
+$.get('/v1/secrets', function (data) {
+	secrets = data;
+});
 
 //popover functionality
 $('[data-toggle="popover"]').popover()
@@ -98,7 +98,7 @@ function getResult (trackName, artistName) {
 		if (data.response.songs.length !== 0) {
 
 			// query for primary and secondary genres
-			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + artistName + '&format=json', function(data) {
+			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + secrets.ECHO_NEST_API_KEY + '&name=' + artistName + '&format=json', function(data) {
 				
 				// query with secondary genre for more specificity
 				if (data.response.terms[0]) {	
@@ -112,7 +112,7 @@ function getResult (trackName, artistName) {
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 						
 						// make call to 4square api
-						$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + FOURSQUARE_CLIENT_ID + '&client_secret=' + FOURSQUARE_CLIENT_SECRET + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&radius=10000&limit=10&query=' + data, function (data) {
+						$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + secrets.FOURSQUARE_CLIENT_ID + '&client_secret=' + secrets.FOURSQUARE_CLIENT_SECRET + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&radius=10000&limit=10&query=' + data, function (data) {
 							
 							// checks that query returns results
 							if(data.response.groups[0].items.length > 0) {
