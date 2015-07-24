@@ -171,6 +171,7 @@ app.get('/v1/secrets', function (req, res) {
 		ECHO_NEST_API_KEY: process.env.ECHO_NEST_API_KEY,
 		FOURSQUARE_CLIENT_ID: process.env.FOURSQUARE_CLIENT_ID,
 		FOURSQUARE_CLIENT_SECRET: process.env.FOURSQUARE_CLIENT_SECRET
+	}
 	res.send(secrets);
 })
 
