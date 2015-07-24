@@ -19,7 +19,7 @@ It's rather simple. SoundBites runs your song through an algorithm that converts
 8. Handlebars
 9. Leaflet/Mapbox
 10. Mongo
-11. Heroku/MongoLab
+11. Heroku/MongoLab <br />
 ## Installation & Usage
 The following assumes you have Node, Express, and Mongo installed on your system.
 * First clone this repo `https://github.com/icivgin/sound-bites`
