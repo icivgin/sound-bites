@@ -166,4 +166,9 @@ app.get('/v1/users/find/email/:email', function (req, res) {
 	});
 });
 
+app.get('/v1/secrets', function (req, res) {
+	var x = process.env.ECHO_NEST_API_KEY;
+	res.send(x);
+})
+
 app.listen(process.env.PORT || 3000);

@@ -17,9 +17,12 @@ var userFalseTemplate = Handlebars.compile(userFalse);
 
 var toggle = true;
 
-var apiKey = process.env[ECHO_NEST_API_KEY];
-var FOURSQUARE_CLIENT_ID = process.env.FOURSQUARE_CLIENT_ID;
-var FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;
+var apiKey;
+$.get('/v1/secrets', function (data) {
+	console.log(data);
+})
+// var FOURSQUARE_CLIENT_ID = process.env.FOURSQUARE_CLIENT_ID;
+// var FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;
 
 var trackName = '';
 var artistName = '';
