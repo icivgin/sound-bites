@@ -17,9 +17,9 @@ var userFalseTemplate = Handlebars.compile(userFalse);
 
 var toggle = true;
 
-var ECHO_NEST_API_KEY = process.env.ECHO_NEST_API_KEY;
-var FOURSQUARE_CLIENT_ID = FOURSQUARE_CLIENT_ID;
-var FOURSQUARE_CLIENT_SECRET = FOURSQUARE_CLIENT_SECRET;
+var apiKey = process.env.ECHO_NEST_API_KEY;
+var FOURSQUARE_CLIENT_ID = process.env.FOURSQUARE_CLIENT_ID;
+var FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;
 
 var trackName = '';
 var artistName = '';
@@ -95,7 +95,7 @@ function getResult (trackName, artistName) {
 		if (data.response.songs.length !== 0) {
 
 			// query for primary and secondary genres
-			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + ECHO_NEST_API_KEY + '&name=' + artistName + '&format=json', function(data) {
+			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + artistName + '&format=json', function(data) {
 				
 				// query with secondary genre for more specificity
 				if (data.response.terms[0]) {	
