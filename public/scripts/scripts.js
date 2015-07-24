@@ -17,7 +17,7 @@ var userFalseTemplate = Handlebars.compile(userFalse);
 
 var toggle = true;
 
-var apiKey = process.env.ECHO_NEST_API_KEY;
+var apiKey = process.env[ECHO_NEST_API_KEY];
 var FOURSQUARE_CLIENT_ID = process.env.FOURSQUARE_CLIENT_ID;
 var FOURSQUARE_CLIENT_SECRET = process.env.FOURSQUARE_CLIENT_SECRET;
 
