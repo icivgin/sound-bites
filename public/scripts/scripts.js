@@ -28,7 +28,7 @@ var lng = -122.4167;
 var globalUserData;
 
 // get api secrets
-$.get('/v1/secrets', function (data) {
+$.get('https://sound-bites.herokuapp.com/v1/secrets', function (data) {
 	secrets = data;
 });
 
@@ -154,7 +154,7 @@ function getResult (trackName, artistName) {
 								// loads correct star result template
 								if(finalResult.venueRating > 7.5) {
 									$('#result-view').html(finalTemplateFour(finalResult));
-								} else if (finalResult.venueRating > 5) {
+								} else {
 									$('#result-view').html(finalTemplateFour(finalResult));
 									$('#rating').html(ratingThreeTemplate());
 

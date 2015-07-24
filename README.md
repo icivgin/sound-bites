@@ -1,5 +1,6 @@
 # SoundBites
 Enter the last song you listened to and discover a spot that suits you.
+[Live on the interwebs here](https://sound-bites.herokuapp.com)
 ## Meta
 **Author** Ian Civgin<br />
 **Email** imciv2@gmail.com<br />
@@ -18,8 +19,9 @@ It's rather simple. SoundBites runs your song through an algorithm that converts
 7. jQuery
 8. Handlebars
 9. Leaflet/Mapbox
-10. Mongo
+10. Mongo/Mongoose
 11. Heroku/MongoLab
+
 ## Installing SoundBites
 The following assumes you have Node, Express, and Mongo installed on your system.
 * First clone this repo `https://github.com/icivgin/sound-bites`
