@@ -16,10 +16,10 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'ice cream',
 			'juice',
 			'smoothie',
-			'organic food',
+			'organic restaurant',
 			'salad wrap',
-			'salad',
-			'fresh'
+			'coffee',
+			'healthy restaurant'
 		];
 		callback(optionArr[random]);
 
@@ -226,10 +226,10 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'ice cream',
 			'juice',
 			'smoothie',
-			'organic food',
+			'organic restaurant',
 			'salad wrap',
-			'salad',
-			'fresh'
+			'coffee',
+			'healthy restaurant'
 		];
 		callback(optionArr[random]);
 

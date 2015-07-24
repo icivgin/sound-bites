@@ -16,7 +16,6 @@ var userFalse = $('#user-false').html();
 var userFalseTemplate = Handlebars.compile(userFalse);
 
 var toggle = true;
-var albumArtGlobal = 'http://gadgtmag.com/media/uploads/2012/10/album-art-missing.png';
 
 var apiKey = 'DGY3JGAZP1OFZR4RO';
 var clientID = 'J3QA1RADSXWM43QI0VTSC1EFFCFFZYKPZW2Z2PNVL5YEWU5T';
@@ -89,20 +88,11 @@ String.prototype.capitalize = function(){
     });
 };
 
-function getAlbumArt (trackName, artistName) {
-	$.get('https://api.spotify.com/v1/search?q=' + trackName + '%20' + artistName + '&type=track', function (data) {
-			albumArtGlobal = data.tracks.items[0].album.images[1].url;
-	});
-}
-
 function getResult (trackName, artistName) {
 
 	// check to see if song exists
 	$.get('https://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + artistName + '&title=' + trackName, function (data) {
 		if (data.response.songs.length !== 0) {
-
-			// retrieve album art from spotify
-			getAlbumArt(trackName, artistName);
 
 			// query for primary and secondary genres
 			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + apiKey + '&name=' + artistName + '&format=json', function(data) {
@@ -133,7 +123,6 @@ function getResult (trackName, artistName) {
 								var finalResult = {
 									trackNameResult: trackName.capitalize(),
 									artistNameResult: artistName.capitalize(),
-									albumArt: albumArtGlobal,
 									venueName: venue.name,
 									venueCat: venue.categories[0].name,
 									venueLat: venue.location.lat,
@@ -141,7 +130,7 @@ function getResult (trackName, artistName) {
 									venueAddressA: venue.location.formattedAddress[0],
 									venueAddressB: venue.location.formattedAddress[1],
 									venueRating: venueRatingDeep.toFixed(1),
-									venueURL: venue.url
+									venueURL: (venue.url || ('http://lmgtfy.com/?q=' + venue.name))
 								};
 
 								if(globalUserData) {
