@@ -91,14 +91,18 @@ String.prototype.capitalize = function(){
     });
 };
 
-function getResult (trackName, artistName) {
+function replaceString (inputString) {
+	var re = /\&/;
+	return inputString.replace(re, '%26');
+}
 
+function getResult (trackName, artistName) {
 	// check to see if song exists
-	$.get('https://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + artistName + '&title=' + trackName, function (data) {
+	$.get('https://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + replaceString(artistName) + '&title=' + replaceString(trackName), function (data) {
 		if (data.response.songs.length !== 0) {
 
 			// query for primary and secondary genres
-			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + secrets.ECHO_NEST_API_KEY + '&name=' + artistName + '&format=json', function(data) {
+			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + secrets.ECHO_NEST_API_KEY + '&name=' + replaceString(artistName) + '&format=json', function(data) {
 				
 				// query with secondary genre for more specificity
 				if (data.response.terms[0]) {	
@@ -206,7 +210,6 @@ function addEventHandlers () {
 	//on submit of search field
 	$('#submit-track').on('submit', function(event) {
 		event.preventDefault();
-		// var word = { track: $('#track-name').val(), artist: $('#artist-name').val()};
 		getResult($('#track-name').val(), $('#artist-name').val());
 	});
 };
