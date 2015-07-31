@@ -22,9 +22,14 @@ $('[data-toggle="popover"]').popover()
 
 //capitalize first letter in string
 String.prototype.capitalize = function(){
-    return this.toLowerCase().replace( /\b\w/g, function (m) {
-        return m.toUpperCase();
-    });
+    var stringArr = this.toLowerCase().split(' ');
+    function capital(match) {
+    	return match.toUpperCase();
+    }
+    for (i=0;i<stringArr.length; i++) {
+    	stringArr[i] = stringArr[i].replace(/^\w/, capital);
+    }
+    return stringArr.join(' ');
 };
 
 // mouseover functionality

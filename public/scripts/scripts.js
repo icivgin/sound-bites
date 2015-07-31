@@ -85,10 +85,16 @@ function setupFirstView() {
 //run setupFirstView on page load
 setupFirstView();
 
+
 String.prototype.capitalize = function(){
-    return this.toLowerCase().replace( /\b\w/g, function (m) {
-        return m.toUpperCase();
-    });
+    var stringArr = this.toLowerCase().split(' ');
+    function capital(match) {
+    	return match.toUpperCase();
+    }
+    for (i=0;i<stringArr.length; i++) {
+    	stringArr[i] = stringArr[i].replace(/^\w/, capital);
+    }
+    return stringArr.join(' ');
 };
 
 function replaceString (inputString) {
@@ -110,7 +116,7 @@ function getResult (trackName, artistName) {
 					genre2 = data.response.terms[1].name; 
 
 					// Show genre toggle (testing)
-					// console.log(genre1, genre2);
+					console.log(genre1, genre2);
 					
 					//ajax request to api search (mapping)
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
