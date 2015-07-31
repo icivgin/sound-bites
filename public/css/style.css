@@ -264,6 +264,12 @@ textarea {
 .instructional {
 	margin-top: 10px;
 }
+.error-notification {
+	color: white;
+}
+.red {
+	color: red;
+}
 
 /* Instructables ------------------------------------------------------------*/
 .instructable {

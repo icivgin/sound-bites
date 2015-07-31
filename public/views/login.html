@@ -35,16 +35,18 @@
 			<div id='search-view'>
 				<div class='row center'>
 					<div class='col-md-4 col-md-offset-4'>
-						<h1 class='large top'>Log in...</h1>
-						<h2 class='helvetica'><i>and view all your past searches.</i></h2><hr class='top-hr'><br>
-						<form method='POST' action='/login' id='#'>
-							<input type='text' name='userName' class='input-field' id='#' placeholder="Username" required autofocus></input><br>
+						<h1 class='large top'>Login...</h1>
+						<h3 class='helvetica'><i>to save your favorite recommendations for later.</i></h3><hr class='top-hr'><br>
+						<form id='login'>
+							<input type='text' name='userName' class='input-field' id='login-userName' placeholder="Username" required autofocus></input><br>
+							<p id='user-error' class='error-notification'></p>
 
-							<input type='password' name='password' class='input-field' id='#' placeholder="Password" required></input><br>
+							<input type='password' name='password' class='input-field' id='login-password' placeholder="Password" required></input><br>
+							<p id='password-error' class='error-notification'></p>
 
 							<button type='submit' class='btn btn-primary btn-submit'>Login!</button><br>
 						</form>
-						<p class='instructional'>If you still need to sign up, <a href='/signup' class='venue-website'>click here</a></p>
+						<p class='instructional'><a href='/signup' class='venue-website'></a></p>
 					</div>
 				</div>
 			</div>
@@ -79,6 +81,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 
 	<!-- custom script -->
-	<script type='text/javascript' src=''></script>
+	<script type='text/javascript' src='../scripts/login.js'></script>
 </body>
 </html>

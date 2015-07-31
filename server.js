@@ -85,12 +85,12 @@ app.post('/login', function (req, res) {
 
 	db.User.authenticate(userData, function (err, user) {
 		if(err === 1) {
-			res.sendFile(__dirname + '/public/views/error.html');
+			res.send('user not found');
 		} else if (err === 2) {
-			res.sendFile(__dirname + '/public/views/error.html');
+			res.send('password does not match');
 		} else {
 		req.login(user);
-		res.redirect('/profile');
+		res.send({redirect: '/profile'});
 		}
 	});
 });
