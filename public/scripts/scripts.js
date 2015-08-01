@@ -28,7 +28,7 @@ var lng = -122.4167;
 var globalUserData;
 
 // get api secrets
-$.get('https://sound-bites.herokuapp.com/v1/secrets', function (data) {
+$.get('/v1/secrets', function (data) {
 	secrets = data;
 });
 
