@@ -47,8 +47,8 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'small plates',
 			'wine bar',
 			'organic restaurant',
-			'locally sourced',
-			'farm to table',
+			'bakery',
+			'cafe',
 			'homestyle'
 		];
 		callback(optionArr[random]);

@@ -3,11 +3,18 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
 	mongoose = require('mongoose'),
-	session = require('express-session');
+	session = require('express-session'),
+	request = require('request');
 
 // Inport Models
 var db = require('./models/models');
 var Map = require('./models/map');
+
+//regex for queries with ampersand
+function replaceString (inputString) {
+	var re = /\&/;
+	return inputString.replace(re, '%26');
+}
 
 mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/sound-bites-two');
 
@@ -181,13 +188,22 @@ app.get('/v1/users/find/email/:email', function (req, res) {
 	});
 });
 
-app.get('/v1/secrets', function (req, res) {
-	var secrets = {
-		ECHO_NEST_API_KEY: 'DGY3JGAZP1OFZR4RO',
-		FOURSQUARE_CLIENT_ID: 'J3QA1RADSXWM43QI0VTSC1EFFCFFZYKPZW2Z2PNVL5YEWU5T',
-		FOURSQUARE_CLIENT_SECRET: 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP'
-	}
-	res.send(secrets);
-})
+app.get('/v1/proxy/echo/primary/:artistName/:trackName', function (req, res) {
+	request('https://developer.echonest.com/api/v4/song/search?api_key=' + 'DGY3JGAZP1OFZR4RO' + '&format=json&results=6&artist=' + replaceString(req.params.artistName) + '&title=' + replaceString(req.params.trackName), function (error, response, body) {
+  		res.send(body);
+	});
+});
+
+app.get('/v1/proxy/echo/secondary/:artistName', function (req, res) {
+	request('https://developer.echonest.com/api/v4/artist/terms?api_key=' + 'DGY3JGAZP1OFZR4RO' + '&name=' + replaceString(req.params.artistName) + '&format=json', function (error, response, body) {
+  		res.send(body);
+	});
+});
+
+app.get('/v1/proxy/foursquare/primary/:queryVal/:lat/:lng', function (req, res) {
+	request('https://api.foursquare.com/v2/venues/explore?client_id=' + 'J3QA1RADSXWM43QI0VTSC1EFFCFFZYKPZW2Z2PNVL5YEWU5T' + '&client_secret=' + 'TRR5QY22ZJWTTGWRXQ50MQIFXC0VHOLC2F3EPG2YRBMIFIXP' + '&v=20130815%20&ll=' + req.params.lat + ',' + req.params.lng + '&llAcc=10000.0&radius=5000&limit=10&query=' + req.params.queryVal, function (error, response, body) {
+  		res.send(body);
+	});
+});
 
 app.listen(process.env.PORT || 3000);

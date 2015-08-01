@@ -20,8 +20,6 @@ var userFalseTemplate = Handlebars.compile(userFalse);
 
 var toggle = true;
 
-var secrets;
-
 var trackName = '';
 var artistName = '';
 
@@ -29,11 +27,6 @@ var lat = 37.7833;
 var lng = -122.4167;
 
 var globalUserData;
-
-// get api secrets
-$.get('/v1/secrets', function (data) {
-	secrets = data;
-});
 
 //popover functionality
 $('[data-toggle="popover"]').popover()
@@ -100,20 +93,16 @@ String.prototype.capitalize = function(){
     return stringArr.join(' ');
 };
 
-function replaceString (inputString) {
-	var re = /\&/;
-	return inputString.replace(re, '%26');
-}
-
 function getResult (trackName, artistName) {
 	// check to see if song exists
-	$.get('https://developer.echonest.com/api/v4/song/search?api_key=DGY3JGAZP1OFZR4RO&format=json&results=6&artist=' + replaceString(artistName) + '&title=' + replaceString(trackName), function (data) {
+	$.get('/v1/proxy/echo/primary/' + artistName + '/' + trackName, function (data) {
+		data = JSON.parse(data);
 		if (data.response.songs.length !== 0) {
 
 			// query for primary and secondary genres
-			$.get('https://developer.echonest.com/api/v4/artist/terms?api_key=' + secrets.ECHO_NEST_API_KEY + '&name=' + replaceString(artistName) + '&format=json', function(data) {
-				
+			$.get('/v1/proxy/echo/secondary/' + artistName, function (data) {
 				// query with secondary genre for more specificity
+				data = JSON.parse(data);
 				if (data.response.terms[0]) {	
 					genre1 = data.response.terms[0].name; 
 					genre2 = data.response.terms[1].name; 
@@ -125,8 +114,8 @@ function getResult (trackName, artistName) {
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 						
 						// make call to 4square api
-						$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + secrets.FOURSQUARE_CLIENT_ID + '&client_secret=' + secrets.FOURSQUARE_CLIENT_SECRET + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&radius=5000&limit=10&query=' + data, function (data) {
-							
+						$.get('/v1/proxy/foursquare/primary/' + data + '/' + lat + '/' + lng, function (data) {
+							data = JSON.parse(data);
 							// checks that query returns results
 							if(data.response.groups[0].items.length > 0) {
 
