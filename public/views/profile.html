@@ -61,13 +61,13 @@
 
 	<!-- result-div template -->
 	<script type ="text/x-handlebars-template" id='result-template'>
-		<div class='row left result-div' data-lat='{{venueLat}}' data-lng='{{venueLng}}'>
+		<div class='row left result-div' data-lat='{{venueLat}}' data-lng='{{venueLng}}' data-id='{{_id}}'>
 			<div class='col-lg-4'>
 				<h3>{{trackNameResult}}</h3>
 				<p>{{artistNameResult}}</p>
 			</div>
 			<div class='col-lg-8'>
-				<h3>{{venueName}}</h3>
+				<h3>{{venueName}}<button class="close right delete-result" aria-label="Close" data-id='{{_id}}'><span aria-hidden="true" class='white'>&times;</span></button></h3>
 				<p class='small'>{{venueCat}}<span class='right'><span class="glyphicon glyphicon-star inline" aria-hidden="true"></span>&nbsp;{{venueRating}}/10</span></p>
 				<a target='_blank' class='venue-website' href='https://maps.google.com/maps?q={{ venueAddressA }} {{ venueAddressB }}'><span class='glyphicon glyphicon-road' aria-hidden='true'></span>&nbsp;&nbsp;Get directions</a>
 				<a target='_blank' class='venue-website' href='{{ venueURL }}'><br><span class='glyphicon glyphicon-globe' aria-hidden='true'></span>&nbsp;&nbsp;Visit their website</a>

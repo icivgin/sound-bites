@@ -271,6 +271,11 @@ textarea {
 	color: red;
 }
 
+/* PROFILE ------------------------------------------------------------*/
+.white {
+	color: white;
+}
+
 /* Instructables ------------------------------------------------------------*/
 .instructable {
 	min-height: 160px;

@@ -139,6 +139,21 @@ app.put('/v1/users/:userId', function (req, res) {
 	});
 });
 
+app.delete('/v1/users/:userId/:resultId', function (req, res) {
+	db.User.findByIdAndUpdate(
+		req.params.userId,
+		{
+			$pull: {
+				myResults: {_id: req.params.resultId}
+			}
+		},
+		function (err, result){
+			res.send(result);
+		}
+	);
+
+});
+
 //SEARCH ROUTE FOR MAPPING ALGORITHM
 app.get('/v1/search/:inputA/:inputB', function (req, res) {
 	Map.map(req.params.inputA, req.params.inputB, function (query) {

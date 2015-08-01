@@ -9,6 +9,9 @@ var finalTemplateFour = Handlebars.compile(finalSourceFour);
 var ratingThreeSource = $('#rating-three').html();
 var ratingThreeTemplate = Handlebars.compile(ratingThreeSource);
 
+var favoriteSource = $('#favorite-option').html();
+var favoriteTemplate = Handlebars.compile(favoriteSource);
+
 var userTrue = $('#user-true').html();
 var userTrueTemplate = Handlebars.compile(userTrue);
 
@@ -71,12 +74,12 @@ function setupFirstView() {
 			globalUserData = data;
 			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
 			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
-			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
+			$('#submit-button').html('Finding your location ... please wait').css('background-color', 'grey').css('border-color', 'grey');
 			$('#track-name').focus();
 		} else {
 			$('#navbar-view').html(userFalseTemplate());
 			$('#search-view').html(searchTemplate({user:'you'}));
-			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
+			$('#submit-button').html('Finding your location ... please wait').css('background-color', 'grey').css('border-color', 'grey');
 			$('#track-name').focus();
 		}
 	});
@@ -117,12 +120,12 @@ function getResult (trackName, artistName) {
 
 					// Show genre toggle (testing)
 					// console.log(genre1, genre2);
-					
+
 					//ajax request to api search (mapping)
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 						
 						// make call to 4square api
-						$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + secrets.FOURSQUARE_CLIENT_ID + '&client_secret=' + secrets.FOURSQUARE_CLIENT_SECRET + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&radius=10000&limit=10&query=' + data, function (data) {
+						$.get('https://api.foursquare.com/v2/venues/explore?client_id=' + secrets.FOURSQUARE_CLIENT_ID + '&client_secret=' + secrets.FOURSQUARE_CLIENT_SECRET + '&v=20130815%20&ll=' + lat + ',' + lng + '&llAcc=10000.0&radius=5000&limit=10&query=' + data, function (data) {
 							
 							// checks that query returns results
 							if(data.response.groups[0].items.length > 0) {
@@ -146,18 +149,6 @@ function getResult (trackName, artistName) {
 									venueURL: (venue.url || ('http://lmgtfy.com/?q=' + venue.name))
 								};
 
-								if(globalUserData) {
-									$.ajax({
-										url: '/v1/users/' + globalUserData._id,
-										type: 'PUT',
-										data: finalResult,
-										success: function (data) {},
-										error: function() {
-											alert('Error!');
-										}
-									});
-								}
-
 								// hides search template
 								$('#search-view').html('');
 
@@ -169,6 +160,23 @@ function getResult (trackName, artistName) {
 									$('#rating').html(ratingThreeTemplate());
 
 								}
+
+								if(globalUserData) {
+									$('#favorite').html(favoriteTemplate)
+									$('#favorite-result').one('click', function(event) {
+										$.ajax({
+											url: '/v1/users/' + globalUserData._id,
+											type: 'PUT',
+											data: finalResult,
+											success: function (data) {},
+											error: function() {
+												alert('Error!');
+											}
+										});
+										$('#heart').addClass('red');
+									});
+								}
+
 
 								//Add event handlers
 								//on new search click

@@ -56,6 +56,24 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: 'pk.eyJ1IjoiaWNpdmdpbiIsImEiOiI3MmVjZmMyNmM2ZWYxMGQ2MDAzMWU5MDhiZGI5ZmJkNSJ9.uOGm9rJve_i8WdJFKT3ljg'
 }).addTo(map);
 
+function addEventHandlers () {
+	$('.delete-result').on('click', function(event) {
+		event.preventDefault();
+		targetId = $(this).attr('data-id');
+
+		//remove from view
+		$(this).parent().parent().parent().remove();
+		
+		//remove from db
+		$.ajax({
+			url: '/v1/users/' + globalUserData._id + '/' + targetId,
+			type: 'DELETE',
+			success: function (data) {
+			}
+		})
+	});
+}
+
 //add marker
 $.get('/v1/me', function (data) {
 	if(data) {
@@ -72,6 +90,7 @@ $.get('/v1/me', function (data) {
 					marker = new L.marker([that.attr('data-lat'), that.attr('data-lng')]).addTo(map);
 				}
 			}
+			addEventHandlers();
 		});
 	} else {
 		$('#navbar-view').html(userFalseTemplate());
