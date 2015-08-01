@@ -116,7 +116,7 @@ function getResult (trackName, artistName) {
 					genre2 = data.response.terms[1].name; 
 
 					// Show genre toggle (testing)
-					console.log(genre1, genre2);
+					// console.log(genre1, genre2);
 					
 					//ajax request to api search (mapping)
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {

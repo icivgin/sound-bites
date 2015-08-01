@@ -9,7 +9,7 @@ var express = require('express'),
 var db = require('./models/models');
 var Map = require('./models/map');
 
-mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/sound-bites');
+mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/sound-bites-two');
 
 // MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: true}));
