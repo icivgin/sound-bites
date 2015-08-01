@@ -67,12 +67,12 @@ function setupFirstView() {
 			globalUserData = data;
 			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
 			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
-			$('#submit-button').html('Finding your location ... please wait').css('background-color', 'grey').css('border-color', 'grey');
+			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
 			$('#track-name').focus();
 		} else {
 			$('#navbar-view').html(userFalseTemplate());
 			$('#search-view').html(searchTemplate({user:'you'}));
-			$('#submit-button').html('Finding your location ... please wait').css('background-color', 'grey').css('border-color', 'grey');
+			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
 			$('#track-name').focus();
 		}
 	});

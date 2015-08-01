@@ -254,10 +254,20 @@ textarea {
 	margin-top: 15px;
 	font-size: 14px;
 }
-
 .rating {
 	color: #2EBBDB;
 	padding-top: 8px;
+}
+@media screen and (max-width: 600px) {
+	.sm-top {
+		padding-top: 10px;
+	}
+	.sm-left {
+		padding-left: 15px;
+	}
+	#rating {
+		float: left;
+	}
 }
 
 /* SIGN UP & LOGIN ------------------------------------------------------------*/
