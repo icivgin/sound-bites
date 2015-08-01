@@ -9,6 +9,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
 	<!-- custom styles -->
 	<link rel='stylesheet' type='text/css' href='../css/style.css'>
+
+	<!-- Open Sans Google font API -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+
 	<title>Sound Bites | Login</title>
 </head>
 <body>
@@ -33,20 +37,19 @@
 		<div id='content'>
 			<!-- input template -->
 			<div id='search-view'>
-				<div class='row center'>
+				<div class='row search center'>
 					<div class='col-md-4 col-md-offset-4'>
-						<h1 class='large top'>Login...</h1>
-						<h3 class='helvetica'><i>to save your favorite recommendations for later.</i></h3><hr class='top-hr'><br>
+						<h1 class='large cvp'>Log in to save your favorite searches for later!</h1><hr class='top-hr'><br>
 						<form id='login'>
-							<input type='text' name='userName' class='input-field' id='login-userName' placeholder="Username" required autofocus></input><br>
+							<input type='text' name='userName' class='input-field input-login' id='login-userName' placeholder="Username" required autofocus></input><br>
 							<p id='user-error' class='error-notification'></p>
 
-							<input type='password' name='password' class='input-field' id='login-password' placeholder="Password" required></input><br>
+							<input type='password' name='password' class='input-field input-login' id='login-password' placeholder="Password" required></input><br>
 							<p id='password-error' class='error-notification'></p>
 
 							<button type='submit' class='btn btn-primary btn-submit'>Login!</button><br>
 						</form>
-						<p class='instructional'><a href='/signup' class='venue-website'></a></p>
+						<p class='instructional'><a href='/signup' class='venue-website'>I still need to sign up.</a></p>
 					</div>
 				</div>
 			</div>

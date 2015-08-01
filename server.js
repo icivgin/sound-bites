@@ -8,7 +8,7 @@ var express = require('express'),
 
 // Inport Models
 var db = require('./models/models');
-var Map = require('./models/map');
+var Map = require('./models/map-update');
 
 //regex for queries with ampersand
 function replaceString (inputString) {
@@ -188,6 +188,7 @@ app.get('/v1/users/find/email/:email', function (req, res) {
 	});
 });
 
+//PROXIES for external APIs
 app.get('/v1/proxy/echo/primary/:artistName/:trackName', function (req, res) {
 	request('https://developer.echonest.com/api/v4/song/search?api_key=' + 'DGY3JGAZP1OFZR4RO' + '&format=json&results=6&artist=' + replaceString(req.params.artistName) + '&title=' + replaceString(req.params.trackName), function (error, response, body) {
   		res.send(body);

@@ -26,10 +26,12 @@ body {
 }
 body { 
 	background-color: #2A3552;
-	font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; 
+	font-family: 'Open Sans', sans-serif; 
 	font-weight: 300;
 	color: white;
-	background: url(https://i.imgur.com/feqUsCJ.jpg) no-repeat center center fixed; 
+	/* https://i.imgur.com/feqUsCJ.jpg : CUPS BGIMG */
+	/* https://i.imgur.com/pw4XgzB.jpg : ICECREAM BGIMG */
+	background: url(https://i.imgur.com/gOCZurN.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -81,7 +83,10 @@ body {
 	display: inline;
 }
 hr {
-	border-color: grey;
+	border-color: white;
+}
+.light {
+	font-weight: 300;
 }
 
 /* Scroll Selection Color ------------------------------------------------------------*/
@@ -94,7 +99,7 @@ hr {
 
 /* HEADER ------------------------------------------------------------*/
 .brand-img {
-	height: 40px;
+	height: 45px;
 	padding-bottom: 10px;
 	padding-left: 20px;
 }
@@ -165,25 +170,26 @@ hr {
 
 /* SEARCH TEMPLATE ------------------------------------------------------------*/
 .search {
-	min-height: 400px;
-	padding-top: 35px;
+/*	min-height: 400px;
+*/	padding-top: 35px;
 }
 .greeting {
 	margin-top:50px;
 }
 .top-hr {
-	margin-bottom: 7px;
+	margin-bottom: 0px;
 }
 .input-field {
 	padding-left: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	height: 50px;
 	width: 75%;
 	color: white;
-	font-size: 20px;
+	font-size: 18px;
 }
 .btn-submit {
 	width: 75%;
+	font-weight: 300;
 }
 input,
 textarea,
@@ -209,9 +215,9 @@ textarea {
 	margin-bottom: 50px;
 }
 .cvp {
-	text-shadow: 1px 1px 1px grey;
+	font-weight: 600;
 }
-.how { color: grey; }
+.how { color: white; }
 .how:hover {
 	color: #2DB5D4;
 }
@@ -253,6 +259,7 @@ textarea {
 	width: 46%;
 	margin-top: 15px;
 	font-size: 14px;
+	font-weight: 300;
 }
 .rating {
 	color: #2EBBDB;
@@ -276,9 +283,17 @@ textarea {
 }
 .error-notification {
 	color: white;
+	padding-top: 8px;
 }
 .red {
 	color: red;
+}
+.label {
+	float: left;
+	padding-left: 13%;
+}
+.input-login {
+	margin-bottom: 0px;
 }
 
 /* PROFILE ------------------------------------------------------------*/
@@ -287,15 +302,8 @@ textarea {
 }
 
 /* Instructables ------------------------------------------------------------*/
-.instructable {
-	min-height: 160px;
-	border-left: solid grey 1px;
-}
 .instructable-menu {
 	background: rgba(80,80,80,.5);
 	padding-bottom: 35px;
 	border-radius: 10px;
-}
-.instructable-menu div {
-	border-color: white;
 }

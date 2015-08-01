@@ -112,7 +112,7 @@ function getResult (trackName, artistName) {
 
 					//ajax request to api search (mapping)
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
-						
+						console.log(data);
 						// make call to 4square api
 						$.get('/v1/proxy/foursquare/primary/' + data + '/' + lat + '/' + lng, function (data) {
 							data = JSON.parse(data);
