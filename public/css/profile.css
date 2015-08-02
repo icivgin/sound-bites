@@ -30,18 +30,18 @@ body, html {
   left: 0;
   width: 75%;
   overflow-y: hidden; 
-  margin-top: 70px;
-  padding: 15px 0px 15px 15px;
+  margin-top: 20px;
+  padding: 100px;
 }
 #right {
   position: fixed;
   top: 0;
   bottom: 0;
-  right: -20px;
+  right: 40px;
   overflow-y: scroll;
   width: 25%;
-  margin-top: 90px;
-  margin-bottom: 50px;
-  padding-right: 35px;
+  margin-top: 140px;
+  margin-bottom: 120px;
+  padding-right: 50px;
   background: (100,100,100,.7);
 }

@@ -41,7 +41,7 @@
 					<div id='map'></div>
 				</div>
 				<div class='col-lg-3' id='right'>
-					<h3 class='left no-pad-top'>Recent Searches</h3>
+					<h3 class='left no-pad-top'>My Favorites</h3>
 					<hr>
 					<div id='results-view'></div>
 				</div>
@@ -81,16 +81,17 @@
 	<!-- navbar user logged in -->
 	<script type ="text/x-handlebars-template" id='user-true'>
 		<ul class="nav navbar-nav">
-		  <a href="/">New Search</a>
-		  <a href="/logout">Logout</a>
+			<p class='inline'><i>Hey, {{user}}!</i></p>
+	    	<a href="/">New Search</a>
+	    	<a href="/logout">Logout</a>
 		</ul>
 	</script>
 
 	<!-- navbar no user -->
 	<script type ="text/x-handlebars-template" id='user-false'>
 		<ul class="nav navbar-nav">
-		  <a href="/signup">Sign Up</a>
-		  <a href="/login">Login</a>
+			<a href="/signup">Sign Up</a>
+			<a href="/login">Login</a>
 		</ul>
 	</script>
 

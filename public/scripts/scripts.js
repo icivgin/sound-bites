@@ -62,6 +62,7 @@ function setupView() {
 			$('#navbar-view').html(userFalseTemplate());
 			$('#search-view').html(searchTemplate({user:'you'}));
 			addEventHandlers();
+			$('#collapseExample').collapse();
 			$('#track-name').focus();
 		}
 	});
