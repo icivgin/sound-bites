@@ -303,7 +303,15 @@ textarea {
 
 /* Instructables ------------------------------------------------------------*/
 .instructable-menu {
-	background: rgba(80,80,80,.5);
+	background: rgba(80,80,80,.4);
 	padding-bottom: 35px;
 	border-radius: 10px;
+}
+h5.how.collapsed:before
+{
+    content:'How does it work?' ;
+}
+h5.how:before
+{
+    content:"Hide 'how it works'" ;
 }

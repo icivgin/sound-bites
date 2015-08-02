@@ -28,6 +28,12 @@ var lng = -122.4167;
 
 var globalUserData;
 
+//regex for queries with ampersand
+function replaceString (inputString) {
+	var re = /\//;
+	return inputString.replace(re, '%2f');
+}
+
 //popover functionality
 $('[data-toggle="popover"]').popover()
 
@@ -50,6 +56,7 @@ function setupView() {
 			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
 			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
 			addEventHandlers();
+			$('#collapseExample').collapse();
 			$('#track-name').focus();
 		} else {
 			$('#navbar-view').html(userFalseTemplate());
@@ -68,6 +75,7 @@ function setupFirstView() {
 			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
 			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
 			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
+			$('#collapseExample').collapse();
 			$('#track-name').focus();
 		} else {
 			$('#navbar-view').html(userFalseTemplate());
@@ -95,12 +103,12 @@ String.prototype.capitalize = function(){
 
 function getResult (trackName, artistName) {
 	// check to see if song exists
-	$.get('/v1/proxy/echo/primary/' + artistName + '/' + trackName, function (data) {
+	$.get('/v1/proxy/echo/primary/' + replaceString(artistName) + '/' + replaceString(trackName), function (data) {
 		data = JSON.parse(data);
 		if (data.response.songs.length !== 0) {
 
 			// query for primary and secondary genres
-			$.get('/v1/proxy/echo/secondary/' + artistName, function (data) {
+			$.get('/v1/proxy/echo/secondary/' + replaceString(artistName), function (data) {
 				// query with secondary genre for more specificity
 				data = JSON.parse(data);
 				if (data.response.terms[0]) {	
@@ -112,7 +120,6 @@ function getResult (trackName, artistName) {
 
 					//ajax request to api search (mapping)
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
-						console.log(data);
 						// make call to 4square api
 						$.get('/v1/proxy/foursquare/primary/' + data + '/' + lat + '/' + lng, function (data) {
 							data = JSON.parse(data);
