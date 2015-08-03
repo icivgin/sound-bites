@@ -56,13 +56,11 @@ function setupView() {
 			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
 			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
 			addEventHandlers();
-			$('#collapseExample').collapse();
 			$('#track-name').focus();
 		} else {
 			$('#navbar-view').html(userFalseTemplate());
 			$('#search-view').html(searchTemplate({user:'you'}));
 			addEventHandlers();
-			$('#collapseExample').collapse();
 			$('#track-name').focus();
 		}
 	});
@@ -76,13 +74,14 @@ function setupFirstView() {
 			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
 			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
 			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
-			$('#collapseExample').collapse();
 			$('#track-name').focus();
 		} else {
 			$('#navbar-view').html(userFalseTemplate());
 			$('#search-view').html(searchTemplate({user:'you'}));
 			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
 			$('#track-name').focus();
+			$('#collapseExample').collapse('show');
+
 		}
 	});
 }

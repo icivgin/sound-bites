@@ -69,6 +69,12 @@ body {
 .no-margin-top {
 	margin-top:0px;
 }
+.red {
+	color: red;
+}
+.orange {
+	color: orange;
+}
 
 /* Sizing CSS ------------------------------------------------------------*/
 .small {
@@ -285,9 +291,6 @@ textarea {
 	color: white;
 	padding-top: 8px;
 }
-.red {
-	color: red;
-}
 .label {
 	float: left;
 	padding-left: 13%;
@@ -306,6 +309,7 @@ textarea {
 	background: rgba(80,80,80,.4);
 	padding-bottom: 35px;
 	border-radius: 10px;
+	border: solid 1px white;
 }
 h5.how.collapsed:before
 {
