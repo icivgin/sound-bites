@@ -28,6 +28,8 @@ var lng = -122.4514;
 
 var genre1 = '';
 var genre2 = '';
+var trackNameGlobal = '';
+var artistNameGlobal = '';
 
 var searchAgainURL = '';
 
@@ -75,6 +77,9 @@ String.prototype.capitalize = function(){
 };
 
 function getResult (trackName, artistName) {
+	trackNameGlobal = trackName;
+	artistNameGlobal = artistName;
+
 	// check to see if song exists
 	$.get('/v1/proxy/echo/primary/' + replaceString(artistName) + '/' + replaceString(trackName), function (data) {
 		data = JSON.parse(data);
@@ -89,7 +94,7 @@ function getResult (trackName, artistName) {
 					genre2 = data.response.terms[1].name; 
 
 					//ajax request to api search (mapping)
-					searchVenue(genre1, genre2);
+					searchVenue(genre1, genre2, trackNameGlobal, artistNameGlobal);
 
 				} else { alert('No data found. Please try another song!'); }
 			});
@@ -100,7 +105,7 @@ function getResult (trackName, artistName) {
 	});
 }
 
-function searchVenue (genre1, genre2) {
+function searchVenue (genre1, genre2, trackName, artistName) {
 	$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
 		// make call to 4square api
 		$.get('/v1/proxy/foursquare/primary/' + data + '/' + lat + '/' + lng, function (data) {
@@ -165,7 +170,7 @@ function searchVenue (genre1, genre2) {
 				//on search again click
 				$('#search-again').on('click', function(event) {
 					event.preventDefault();
-					searchVenue(genre1, genre2);
+					searchVenue(genre1, genre2, trackNameGlobal, artistNameGlobal);
 				});
 
 				// set up map
