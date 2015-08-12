@@ -37,17 +37,6 @@ function replaceString (inputString) {
 //popover functionality
 $('[data-toggle="popover"]').popover()
 
-//retrieving current location
-function saveGeo(position) {
-	// console.log('Location found');
-	addEventHandlers();
-	$('#submit-button').html('Search').css('background-color', '#1498B8').css('border-color', '#1498B8');
-	lat = position.coords.latitude;
-	lng = position.coords.longitude;
-}
-
-var geo = navigator.geolocation.getCurrentPosition(saveGeo);
-
 //sets up the view
 function setupView() {
 	$.get('/v1/me', function (data) {
@@ -62,33 +51,12 @@ function setupView() {
 			$('#search-view').html(searchTemplate({user:'you'}));
 			addEventHandlers();
 			$('#track-name').focus();
-		}
-	});
-}
-
-//sets up the initial view
-function setupFirstView() {
-	$.get('/v1/me', function (data) {
-		if(data) {
-			globalUserData = data;
-			$('#navbar-view').html(userTrueTemplate({user: data.userName}));
-			$('#search-view').html(searchTemplate({user: globalUserData.userName}));
-			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
-			$('#track-name').focus();
-		} else {
-			$('#navbar-view').html(userFalseTemplate());
-			$('#search-view').html(searchTemplate({user:'you'}));
-			$('#submit-button').html('Finding your location ...').css('background-color', 'grey').css('border-color', 'grey');
-			$('#track-name').focus();
 			$('#collapseExample').collapse('show');
-
 		}
 	});
 }
 
-//run setupFirstView on page load
-setupFirstView();
-
+setupView();
 
 String.prototype.capitalize = function(){
     var stringArr = this.toLowerCase().split(' ');
@@ -114,9 +82,6 @@ function getResult (trackName, artistName) {
 				if (data.response.terms[0]) {	
 					genre1 = data.response.terms[0].name; 
 					genre2 = data.response.terms[1].name; 
-
-					// Show genre toggle (testing)
-					// console.log(genre1, genre2);
 
 					//ajax request to api search (mapping)
 					$.get('/v1/search/' + genre1 + '/' + genre2, function (data) {
@@ -154,7 +119,6 @@ function getResult (trackName, artistName) {
 								} else {
 									$('#result-view').html(finalTemplateFour(finalResult));
 									$('#rating').html(ratingThreeTemplate());
-
 								}
 
 								if(globalUserData) {
@@ -172,7 +136,6 @@ function getResult (trackName, artistName) {
 										$('#heart').addClass('red');
 									});
 								}
-
 
 								//Add event handlers
 								//on new search click

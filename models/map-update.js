@@ -40,7 +40,7 @@ MapSchema.statics.map = function (placeholder1, placeholder2, callback) {
 			'brewery',
 			'small plates',
 			'wine bar',
-			'organic restaurant',
+			'cafe',
 			'bakery',
 			'cafe',
 			'homestyle'
